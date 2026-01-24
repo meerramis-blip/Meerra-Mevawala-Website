@@ -1,0 +1,8 @@
+{
+  "name": "Meerra Mevawala - Luxury Makeup Studio & Meerras International School of Makeup and More",
+  "description": "A premium beauty services and professional makeup school website for Meerras International School of Makeup and More, featuring a full CMS, booking system, and luxury UI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
