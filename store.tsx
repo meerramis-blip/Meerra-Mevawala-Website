@@ -6,6 +6,7 @@ import { INITIAL_STATE } from './constants';
 interface StoreContextType {
   state: AppState;
   updateSettings: (settings: Partial<SiteSettings>) => void;
+  setAdmin: (isAdmin: boolean) => void;
   addService: (service: Service) => void;
   updateService: (id: string, service: Partial<Service>) => void;
   deleteService: (id: string) => void;
@@ -34,6 +35,10 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const updateSettings = (settings: Partial<SiteSettings>) => {
     setState(prev => ({ ...prev, settings: { ...prev.settings, ...settings } }));
+  };
+
+  const setAdmin = (isAdmin: boolean) => {
+    setState(prev => ({ ...prev, isAdmin }));
   };
 
   const addService = (service: Service) => {
@@ -98,7 +103,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   return (
     <StoreContext.Provider value={{
-      state, updateSettings, addService, updateService, deleteService,
+      state, updateSettings, setAdmin, addService, updateService, deleteService,
       addCourse, updateCourse, deleteCourse, addBooking, addInquiry,
       updateBookingStatus, addBlogPost, updateBlogPost, deleteBlogPost
     }}>

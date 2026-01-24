@@ -94,4 +94,5 @@ export type AppState = {
   bookings: Booking[];
   inquiries: Inquiry[];
   settings: SiteSettings;
+  isAdmin: boolean;
 };

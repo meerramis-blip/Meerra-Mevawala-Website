@@ -22,6 +22,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
 
 export const INITIAL_STATE: AppState = {
   settings: INITIAL_SETTINGS,
+  isAdmin: false,
   services: [
     {
       id: 's1',
