@@ -29,9 +29,9 @@ export const INITIAL_STATE: AppState = {
       title: 'WEDDING / RECEPTION',
       description: 'Wedding & Reception Makeup with Luxury High Brand / HD / Airbrush Products. Our most premium offering for the discerning bride.',
       price: '₹30,000',
-      duration: '5 Hours',
+      duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=1964&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif?q=80&w=1964&auto=format&fit=crop'
     },
     {
       id: 's2',
