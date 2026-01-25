@@ -32,7 +32,7 @@ export const EditableSection: React.FC<GuideItemProps> = ({ label, file, variabl
       <div className="absolute -top-3 -left-3 z-30 bg-[#D4AF37] text-white p-1 rounded-full shadow-lg flex items-center gap-2 cursor-help whitespace-nowrap overflow-hidden max-w-[40px] hover:max-w-[400px] transition-all duration-500">
         <Info size={14} className="shrink-0" />
         <span className="text-[9px] font-bold uppercase tracking-widest px-1">
-          Edit in {file} -> {variable}
+          Edit in {file} {'->'} {variable}
         </span>
       </div>
       {children}
