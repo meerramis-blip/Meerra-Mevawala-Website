@@ -38,7 +38,7 @@ export const INITIAL_STATE: AppState = {
       title: 'COCKTAIL / SANGEET',
       description: 'Minimalistic to Heavy makeup – Depends on Clients Choice. Flawless Finish & Long Lasting Makeup look using professional high-end products.',
       price: '₹25,000',
-      duration: '4 Hours',
+      duration: '2 Hours',
       category: 'Bridal',
       image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg?q=80&w=2069&auto=format&fit=crop'
     },
