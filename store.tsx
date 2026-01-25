@@ -25,12 +25,23 @@ const StoreContext = createContext<StoreContextType | undefined>(undefined);
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AppState>(() => {
-    const saved = localStorage.getItem('meerra_state');
-    return saved ? JSON.parse(saved) : INITIAL_STATE;
+    try {
+      const saved = localStorage.getItem('meerra_state');
+      if (saved && saved !== 'undefined' && saved !== 'null') {
+        return { ...INITIAL_STATE, ...JSON.parse(saved) };
+      }
+    } catch (error) {
+      console.error('Failed to load state from localStorage:', error);
+    }
+    return INITIAL_STATE;
   });
 
   useEffect(() => {
-    localStorage.setItem('meerra_state', JSON.stringify(state));
+    try {
+      localStorage.setItem('meerra_state', JSON.stringify(state));
+    } catch (error) {
+      console.error('Failed to save state to localStorage:', error);
+    }
   }, [state]);
 
   const updateSettings = (settings: Partial<SiteSettings>) => {

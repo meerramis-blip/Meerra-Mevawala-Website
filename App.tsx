@@ -1,5 +1,6 @@
+
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { StoreProvider } from './store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,8 +17,9 @@ import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import CookiePolicy from './pages/CookiePolicy';
+import Dashboard from './pages/Admin/Dashboard';
 
-// Scroll to top on route change
+// Simple Scroll to Top component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -41,23 +43,37 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const App: React.FC = () => {
   return (
     <StoreProvider>
-      <ScrollToTop />
-      <Layout>
+      <Router>
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/academy" element={<Academy />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-          <Route path="/cookie-policy" element={<CookiePolicy />} />
-          <Route path="*" element={<Home />} />
+          {/* Admin Route - Rendered without main Layout */}
+          <Route path="/admin" element={<Dashboard />} />
+
+          {/* Main Site Routes - Wrapped in Layout */}
+          <Route
+            path="/*"
+            element={
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/academy" element={<Academy />} />
+                  <Route path="/portfolio" element={<Portfolio />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+                  <Route path="/cookie-policy" element={<CookiePolicy />} />
+                  {/* Fallback to Home */}
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </Layout>
+            }
+          />
         </Routes>
-      </Layout>
+      </Router>
     </StoreProvider>
   );
 };

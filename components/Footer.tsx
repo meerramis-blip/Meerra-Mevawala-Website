@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, Twitter, Linkedin, MessageCircle } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, Twitter, Linkedin, MessageCircle, Lock } from 'lucide-react';
 import { useStore } from '../store';
 
 const PinterestIcon = ({ size = 18 }: { size?: number }) => (
@@ -97,10 +97,13 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 pt-8 text-center text-[10px] text-gray-500 font-medium tracking-[0.2em] uppercase">
           <p className="mb-6">© {new Date().getFullYear()} {settings.brandName}. All Rights Reserved.</p>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
             <Link to="/cookie-policy" className="hover:text-white transition-colors">Cookie Policy</Link>
+            <Link to="/admin" className="hover:text-white transition-colors flex items-center gap-1 opacity-50 hover:opacity-100">
+              <Lock size={10} /> Admin Login
+            </Link>
           </div>
         </div>
       </div>
