@@ -28,7 +28,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       const saved = localStorage.getItem('meerra_state');
       if (saved && saved !== 'undefined' && saved !== 'null') {
-        return { ...INITIAL_STATE, ...JSON.parse(saved) };
+        const parsed = JSON.parse(saved);
+        // Ensure we merge with INITIAL_STATE to get any new default values/keys
+        return { ...INITIAL_STATE, ...parsed, isAdmin: INITIAL_STATE.isAdmin };
       }
     } catch (error) {
       console.error('Failed to load state from localStorage:', error);
@@ -36,6 +38,22 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return INITIAL_STATE;
   });
 
+  // Sync state across tabs
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'meerra_state' && e.newValue) {
+        setState(prev => ({
+          ...prev,
+          ...JSON.parse(e.newValue!),
+          isAdmin: prev.isAdmin // Keep admin state local to session
+        }));
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  // Persist state to localStorage
   useEffect(() => {
     try {
       localStorage.setItem('meerra_state', JSON.stringify(state));
@@ -53,7 +71,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const addService = (service: Service) => {
-    setState(prev => ({ ...prev, services: [...prev.services, service] }));
+    setState(prev => ({ ...prev, services: [service, ...prev.services] }));
   };
 
   const updateService = (id: string, service: Partial<Service>) => {
@@ -68,7 +86,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const addCourse = (course: Course) => {
-    setState(prev => ({ ...prev, courses: [...prev.courses, course] }));
+    setState(prev => ({ ...prev, courses: [course, ...prev.courses] }));
   };
 
   const updateCourse = (id: string, course: Partial<Course>) => {
