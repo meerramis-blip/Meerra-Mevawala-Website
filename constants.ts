@@ -40,25 +40,25 @@ export const INITIAL_STATE: AppState = {
       price: '₹25,000',
       duration: '4 Hours',
       category: 'Bridal',
-      image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg?q=80&w=2069&auto=format&fit=crop'
     },
     {
       id: 's3',
       title: 'MEHNDI / HALDI / ENGAGEMENT / PARTY MAKEUP',
       description: 'Sophisticated flawless finish and long-lasting makeup for Mehendi, Haldi, Engagement, and all types of celebration party looks.',
       price: '₹18,000',
-      duration: '3 Hours',
+      duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif?q=80&w=1935&auto=format&fit=crop'
     },
     {
       id: 's4',
       title: 'ENGAGEMENT / SISTER MAKEUP',
       description: 'Sophisticated and elegant look for the bride\'s sister or for engagement ceremonies.',
       price: '₹18,000',
-      duration: '2.5 Hours',
+      duration: '2 Hours',
       category: 'Party',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697215cbcff5694f33359411.jpeg?q=80&w=2071&auto=format&fit=crop'
     },
     {
       id: 's5',
@@ -67,16 +67,25 @@ export const INITIAL_STATE: AppState = {
       price: '₹12,500',
       duration: '2 Hours',
       category: 'Special',
-      image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697216ac4a64640501509374.jpeg?q=80&w=2087&auto=format&fit=crop'
     },
     {
       id: 's6',
-      title: 'GROOM MAKEUP & PERSONAL GROOMING',
+      title: 'GROOM MAKEUP',
       description: 'Natural, camera-ready grooming to ensure a flawless and polished look for the groom on his special day.',
       price: '₹5,000',
-      duration: '1 Hour',
+      duration: '0.5 Hour',
       category: 'Special',
-      image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2001&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69721659d740ae4f18cff776.jpeg?q=80&w=2001&auto=format&fit=crop'
+    },
+    {
+      id: 's7',
+      title: 'PRE BRIDAL SHOOT',
+      description: 'Luxury pre-bridal makeup designed to enhance natural beauty, perfect skin, and timeless elegance for every celebration.',
+      price: '₹25,000',
+      duration: '8 Hours',
+      category: 'Bridal',
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e515885e80b07c00c5.jfif?q=80&w=2087&auto=format&fit=crop'
     }
   ],
   courses: [
