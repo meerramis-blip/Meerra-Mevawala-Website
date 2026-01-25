@@ -26,7 +26,7 @@ export const INITIAL_STATE: AppState = {
   services: [
     {
       id: 's1',
-      title: 'WEDDING / RECEPTION',
+      title: 'WEDDING / RECEPTION - SIGNATURE LOOK',
       description: 'Wedding & Reception Makeup with Luxury High Brand / HD / Airbrush Products. Our most premium offering for the discerning bride.',
       price: '₹30,000',
       duration: '2 Hours',
