@@ -153,7 +153,7 @@ const Home: React.FC = () => {
               <div className="lg:w-1/2">
                 <div className="relative">
                   <img
-                    src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974?q=80&w=1935&auto=format&fit=crop"
                     alt="Professional Makeup School Mumbai"
                     className="rounded-2xl shadow-2xl relative z-10"
                   />
