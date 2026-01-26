@@ -39,7 +39,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹25,000',
       duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6972161f5c6b6c0032542a20.jpeg'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg'
     },
     {
       id: 's3',
