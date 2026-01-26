@@ -265,34 +265,38 @@ export const INITIAL_STATE: AppState = {
     }
   ],
   testimonials: [
-    {
-      id: 't1',
-      name: 'Sai Lokhande',
-      role: 'Bride',
-      content: 'She had done a such a great job ! I was so happy with my looks. Got tons of compliments thanks to her. Going to recommend her to my friends!',
-      rating: 5,
-      image: 'https://picsum.photos/seed/user1/100/100',
-      videoThumbnail: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop'
-    },
-    {
-      id: 't2',
-      name: 'Mausam Agrawal',
-      role: 'Bride',
-      content: 'She did my bridal makeup and I really lovedddd it! Got so many compliments for all my looks.. her hairstyles were superb 😍',
-      rating: 5,
-      image: 'https://picsum.photos/seed/user2/100/100',
-      videoThumbnail: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
-    },
-    {
-      id: 't3',
-      name: 'Lakshita Gaddam',
-      role: 'Academy Graduate',
-      content: 'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
-      rating: 5,
-      image: 'https://picsum.photos/seed/user3/100/100',
-      videoThumbnail: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
-    }
-  ],
+  {
+    id: 't1',
+    name: 'Sai Lokhande',
+    role: 'Bride',
+    content:
+      'She had done such a great job! I was so happy with my looks. Got tons of compliments.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
+    link: 'https://www.instagram.com/' // replace with actual link
+  },
+  {
+    id: 't2',
+    name: 'Mausam Agrawal',
+    role: 'Bride',
+    content:
+      'She did my bridal makeup and I really loved it! Got so many compliments for all my looks.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop',
+    link: 'https://www.instagram.com/' // replace with actual link
+  },
+  {
+    id: 't3',
+    name: 'Lakshita Gaddam',
+    role: 'Academy Graduate',
+    content:
+      'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop',
+    link: 'https://www.instagram.com/' // replace with actual link
+  }
+]
+
   blogPosts: [
     {
       id: 'b1',
