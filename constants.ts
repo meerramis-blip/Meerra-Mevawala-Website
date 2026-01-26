@@ -281,7 +281,7 @@ export const INITIAL_STATE: AppState = {
       id: 't3',
       name: 'Lakshita Gaddam',
       lookTitle: 'Editorial High-Fashion Artistry',
-      role: 'Academy Graduate',
+      role: 'BRIDE',
       content: 'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
       rating: 5,
       image: 'https://picsum.photos/seed/user3/100/100',
