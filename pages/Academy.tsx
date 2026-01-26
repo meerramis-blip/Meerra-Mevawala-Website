@@ -113,7 +113,7 @@ const Academy: React.FC = () => {
     },
     {
       question: "7. Can I pay in installments?",
-      answer: "Yes, we offer flexible installment options to make the course accessible and convenient for everyone."
+      answer: "Yes, we offer flexible installment options to make the course accessible and provide convenience."
     },
     {
       question: "8. Will I be able to start freelancing after the course?",
@@ -219,7 +219,7 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: Private One-on-One Makeup Class Section */}
+      {/* Private One-on-One Makeup Class Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
         <div className="bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-gray-50 flex flex-col lg:flex-row items-stretch">
           <div className="lg:w-1/2 relative min-h-[500px]">

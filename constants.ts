@@ -152,7 +152,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Makeup',
       certification: 'MIS Airbrush Specialist Certificate',
       curriculum: ['Airbrush Equipment', 'HD Skin Finish', 'Product Dilution', 'Precision Contouring', 'Maintenance'],
-      image: 'https://images.unsplash.com/photo-1515688594583-b0fe057204f3?q=80&w=2070&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c11',
@@ -163,7 +163,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Makeup',
       certification: 'MIS Creative Artistry Diploma',
       curriculum: ['Avant-Garde Theory', 'Thematic Makeup', 'Color Blocking', 'Face Jewelry/Adornment', 'Symmetry Mastery'],
-      image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=2070&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1628143242639-6556e9e4f553?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c12',
