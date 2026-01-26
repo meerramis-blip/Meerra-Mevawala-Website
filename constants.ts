@@ -267,32 +267,29 @@ export const INITIAL_STATE: AppState = {
   testimonials: [
     {
       id: 't1',
-      name: 'Ananya Sharma',
+      name: 'Sai Lokhande',
       role: 'Bride',
-      content: 'Meerra made me look like a dream on my wedding day. The makeup stayed fresh for 12 hours!',
+      content: 'She had done a such a great job ! I was so happy with my looks. Got tons of compliments thanks to her. Going to recommend her to my friends!',
       rating: 5,
       image: 'https://picsum.photos/seed/user1/100/100',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       videoThumbnail: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop'
     },
     {
       id: 't2',
-      name: 'Rohan Varma',
-      role: 'Fashion Photographer',
-      content: 'Her editorial work is world-class. She understands lighting and skin textures perfectly.',
+      name: 'Mausam Agrawal',
+      role: 'Bride',
+      content: 'She did my bridal makeup and I really lovedddd it! Got so many compliments for all my looks.. her hairstyles were superb 😍',
       rating: 5,
       image: 'https://picsum.photos/seed/user2/100/100',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       videoThumbnail: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
     },
     {
       id: 't3',
-      name: 'Priya Malhotra',
+      name: 'Lakshita Gaddam',
       role: 'Academy Graduate',
       content: 'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
       rating: 5,
       image: 'https://picsum.photos/seed/user3/100/100',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       videoThumbnail: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
     }
   ],
