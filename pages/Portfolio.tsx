@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, GraduationCap, Trophy, Award, ExternalLink, ArrowRight, Heart, Camera, Star, Crown, Instagram, Plus } from 'lucide-react';
+import { Sparkles, GraduationCap, Trophy, Award, ExternalLink, ArrowRight, Heart, Camera, Star, Crown, Instagram, Plus, MessageCircle, Medal } from 'lucide-react';
 import { useStore } from '../store';
 
 type Category = 'Professional' | 'Brides' | 'Students' | 'Awards';
@@ -14,7 +14,7 @@ interface PortfolioItem {
   size?: 'normal' | 'large' | 'tall';
 }
 
-// Curated 12 high-quality professional work items for a luxury editorial look
+// Curated 12 high-quality professional work items
 const PROFESSIONAL_WORKS = [
   { id: 'pw-1', title: 'Editorial Masterclass', subtitle: 'Fashion Week Look', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif' },
   { id: 'pw-2', title: 'Celestial Glow', subtitle: 'Signature Bridal Prep', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg' },
@@ -30,7 +30,7 @@ const PROFESSIONAL_WORKS = [
   { id: 'pw-12', title: 'Cinematic Finish', subtitle: 'Film & Media Masterwork', image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=800&auto=format&fit=crop' },
 ];
 
-// Curated 12 bridal high-quality works for a luxury editorial look
+// Curated 12 bridal high-quality works
 const BRIDE_WORKS = [
   { id: 'bw-1', title: 'Traditional Red', subtitle: 'Royal Bridal Glow', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop' },
   { id: 'bw-2', title: 'Pastel Dream', subtitle: 'Soft Reception Look', image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=800&auto=format&fit=crop' },
@@ -46,27 +46,45 @@ const BRIDE_WORKS = [
   { id: 'bw-12', title: 'The Grand Entry', subtitle: 'Final Touch-ups', image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800&auto=format&fit=crop' },
 ];
 
+// Curated 12 student works for a luxury editorial look
+const STUDENT_WORKS = [
+  { id: 'sw-1', title: 'Editorial Assessment', subtitle: 'Batch of 2023 - High Fashion', image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-2', title: 'SFX Artistry', subtitle: 'Cinematic Makeup Module', image: 'https://images.unsplash.com/photo-1526045431048-f857369aba09?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-3', title: 'Bridal Masterclass', subtitle: 'Traditional South Indian', image: 'https://images.unsplash.com/photo-1503910361307-44301bd23c59?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-4', title: 'Nail Technician', subtitle: 'Advanced Acrylic Art', image: 'https://images.unsplash.com/photo-1610992015732-2449b0c26670?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-5', title: 'Runway Prep', subtitle: 'LFW Inspired Backstage', image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-6', title: 'Soft Glam', subtitle: 'Student Final Portfolio', image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-7', title: 'Arabic Eyes', subtitle: 'Eye Mapping Technique', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-8', title: 'Character Design', subtitle: 'Fantasy Editorial Project', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif' },
+  { id: 'sw-9', title: 'Russian Filing', subtitle: 'Nail Salon Module', image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-10', title: 'Thermal Styling', subtitle: 'Hollywood Waves Practice', image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-11', title: 'The Modern Bride', subtitle: 'Student Exam Transformation', image: 'https://images.unsplash.com/photo-1525129498994-5805ec7859d3?q=80&w=800&auto=format&fit=crop' },
+  { id: 'sw-12', title: 'HD Skin Master', subtitle: 'Advanced Blending Module', image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop' },
+];
+
+// Curated 12 achievements for a luxury editorial look
+const ACHIEVEMENT_WORKS = [
+  { id: 'aw-1', title: 'Best Woman Entrepreneur', subtitle: 'RBI Bank Award 2022', image: 'https://images.unsplash.com/photo-1578351649704-955a82b090b4?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-2', title: 'CIDESCO International', subtitle: 'Certified Media Artist - Zurich', image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-3', title: 'National Beauty Award', subtitle: 'Most Creative MUA India', image: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-4', title: 'Bharat Icon 2019', subtitle: 'Official Makeup Core Team', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif' },
+  { id: 'aw-5', title: 'Miss Earth 2021', subtitle: 'Official Editorial Partner', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif' },
+  { id: 'aw-6', title: 'Mrs Asia Universe', subtitle: 'Celebrity Makeup Partner', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-7', title: 'Miss Eco International', subtitle: 'Global Artistry Core Team', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-8', title: 'International Expo', subtitle: 'Excellence in Makeup Education', image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-9', title: 'HBS India 2019', subtitle: 'Ardell Lashes Stage Show', image: 'https://images.unsplash.com/photo-1522338228048-3506018615c1?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-10', title: 'Times Power Woman', subtitle: 'Industry Leadership Award', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-11', title: 'WeddingSutra 2024', subtitle: 'Influencer of the Year', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop' },
+  { id: 'aw-12', title: 'Maharashtra Pride', subtitle: 'Beauty Entrepreneur of State', image: 'https://images.unsplash.com/photo-1516584227406-fc053b47c9af?q=80&w=800&auto=format&fit=crop' },
+];
+
 const Portfolio: React.FC = () => {
   const { state } = useStore();
   const [activeTab, setActiveTab] = useState<Category>('Professional');
   const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
   const instagramUrl = state.settings.instagramUrl;
   const bridalInstagramUrl = "https://www.instagram.com/makeupartist.meerramevawala";
-
-  const portfolioItems: PortfolioItem[] = [
-    // STUDENTS
-    { id: 's1', category: 'Students', title: 'Editorial Assessment', subtitle: 'By Batch of 2023', image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop', size: 'large' },
-    { id: 's2', category: 'Students', title: 'SFX & Prosthetics', subtitle: 'Cinematic Makeup Module', image: 'https://images.unsplash.com/photo-1526045431048-f857369aba09?q=80&w=2070&auto=format&fit=crop' },
-    { id: 's3', category: 'Students', title: 'Bridal Masterclass', subtitle: 'Practical Training Sessions', image: 'https://images.unsplash.com/photo-1503910361307-44301bd23c59?q=80&w=1974&auto=format&fit=crop', size: 'tall' },
-    { id: 's4', category: 'Students', title: 'Portfolio Day', subtitle: 'Student Final Projects', image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2001&auto=format&fit=crop' },
-
-    // AWARDS
-    { id: 'a1', category: 'Awards', title: 'Best Woman Entrepreneur', subtitle: 'RBI Bank 2022', image: 'https://images.unsplash.com/photo-1578351649704-955a82b090b4?q=80&w=1974&auto=format&fit=crop', size: 'large' },
-    { id: 'a2', category: 'Awards', title: 'CIDESCO Certification', subtitle: 'Zurich International Standard', image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=2070&auto=format&fit=crop' },
-    { id: 'a3', category: 'Awards', title: 'National Beauty Award', subtitle: 'Most Creative Makeup Artist', image: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1974&auto=format&fit=crop', size: 'tall' },
-  ];
-
-  const filteredItems = portfolioItems.filter(item => item.category === activeTab);
+  const misInstagramUrl = "https://www.instagram.com/mis.makeupschool";
 
   const tabs: { id: Category; label: string; icon: any }[] = [
     { id: 'Professional', label: 'WORK DONE BY MEERRA', icon: Camera },
@@ -192,25 +210,99 @@ const Portfolio: React.FC = () => {
               </a>
             </div>
           </div>
+        ) : activeTab === 'Students' ? (
+          <div className="space-y-20">
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-bold tracking-[0.6em] text-[#D4AF37] uppercase mb-4 block">Rising Masters</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">Students Work</h2>
+              <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6 opacity-30"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+              {STUDENT_WORKS.map((work, idx) => (
+                <div key={work.id} className="group relative flex flex-col">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-50 transition-all duration-700 shadow-sm hover:shadow-2xl">
+                    <img src={work.image} alt={work.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+                       <Plus className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" size={32} />
+                    </div>
+                    <div className="absolute top-6 left-6 text-white/50 text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                      {(idx + 1).toString().padStart(2, '0')}
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-center">
+                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">{work.title}</h3>
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">{work.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center pt-16">
+              <a href={misInstagramUrl} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center gap-4 bg-white border border-gray-100 text-gray-900 px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-gray-900 hover:text-white transition-all shadow-xl shadow-gray-200">
+                SEE MORE ON INSTAGRAM <Instagram size={14} className="group-hover:text-[#D4AF37]" />
+                <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37] opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              </a>
+            </div>
+          </div>
+        ) : activeTab === 'Awards' ? (
+          <div className="space-y-20">
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-bold tracking-[0.6em] text-[#D4AF37] uppercase mb-4 block">Excellence & Milestones</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">Our Achievements</h2>
+              <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6 opacity-30"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+              {ACHIEVEMENT_WORKS.map((work, idx) => (
+                <div key={work.id} className="group relative flex flex-col">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-50 transition-all duration-700 shadow-sm hover:shadow-2xl">
+                    <img src={work.image} alt={work.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+                       <Plus className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" size={32} />
+                    </div>
+                    <div className="absolute top-6 left-6 text-white/50 text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                      {(idx + 1).toString().padStart(2, '0')}
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-center">
+                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">{work.title}</h3>
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">{work.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center pt-16">
+              <a 
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi Meerra, I saw your achievements and would love to connect with you regarding a project/collaboration.")}`}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative inline-flex items-center gap-4 bg-gray-900 text-white px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-[#D4AF37] transition-all shadow-xl shadow-gray-200"
+              >
+                CONNECT WITH ME <MessageCircle size={14} className="group-hover:animate-pulse" />
+                <div className="absolute -inset-0.5 rounded-full border border-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              </a>
+            </div>
+          </div>
         ) : (
           <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-            {filteredItems.map((item) => (
+            {/* Fallback rendering for any newly added categories in store */}
+            {state.testimonials.map((item) => (
               <div 
                 key={item.id} 
-                className={`relative break-inside-avoid overflow-hidden rounded-[2rem] group bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer ${
-                  item.size === 'large' ? 'aspect-[4/5]' : item.size === 'tall' ? 'aspect-[2/3]' : 'aspect-square'
-                }`}
+                className="relative break-inside-avoid overflow-hidden rounded-[2rem] group bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer aspect-square"
               >
                 <img 
                   src={item.image} 
-                  alt={item.title} 
+                  alt={item.name} 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
                   <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-2 block">{item.category}</span>
-                    <h3 className="text-2xl font-serif font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">{item.subtitle}</p>
+                    <span className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-2 block">{item.role}</span>
+                    <h3 className="text-2xl font-serif font-bold text-white mb-2">{item.name}</h3>
+                    <p className="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-2">{item.content}</p>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all">
                         <ExternalLink size={16} />
@@ -223,7 +315,7 @@ const Portfolio: React.FC = () => {
           </div>
         )}
 
-        {/* Dynamic CTAs based on Category */}
+        {/* Dynamic CTAs */}
         <div className="mt-24 text-center">
           {activeTab === 'Brides' && (
             <div className="bg-[#F5E6E8] p-16 rounded-[3rem] shadow-xl relative overflow-hidden max-w-4xl mx-auto">
@@ -254,6 +346,25 @@ const Portfolio: React.FC = () => {
               >
                 EXPLORE COURSES
               </a>
+            </div>
+          )}
+
+          {activeTab === 'Awards' && (
+            <div className="bg-[#FDFCFB] p-16 rounded-[3rem] shadow-sm border border-gray-100 relative overflow-hidden max-w-4xl mx-auto">
+              <Medal className="text-[#D4AF37] mx-auto mb-6" size={48} />
+              <h2 className="text-3xl font-serif font-bold mb-6">Industry Excellence</h2>
+              <p className="text-gray-500 mb-10 max-w-xl mx-auto italic">"True beauty lies in the journey of excellence. These milestones represent our commitment to the highest standards of international artistry."</p>
+              <div className="flex justify-center gap-6">
+                 <Link to="/about" className="text-gray-900 font-bold text-[10px] tracking-widest border-b-2 border-gray-900 pb-2 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all">OUR FULL STORY</Link>
+                 <a 
+                   href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi Meerra, I'd like to discuss working with you.")}`}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="text-gray-900 font-bold text-[10px] tracking-widest border-b-2 border-gray-900 pb-2 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all"
+                 >
+                   WORK WITH US
+                 </a>
+              </div>
             </div>
           )}
         </div>

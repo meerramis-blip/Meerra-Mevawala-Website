@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -15,6 +14,7 @@ const Navbar: React.FC = () => {
     { name: 'Makeup', path: '/services' },
     { name: 'Academy', path: '/academy' },
     { name: 'Portfolio', path: '/portfolio' },
+    { name: 'Collabs', path: '/collaborations' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -43,12 +43,12 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-[10px] font-bold tracking-[0.2em] transition-colors hover:text-[#D4AF37] ${
+                className={`text-[9px] lg:text-[10px] font-bold tracking-[0.2em] transition-colors hover:text-[#D4AF37] whitespace-nowrap ${
                   isActive(link.path) ? 'text-[#D4AF37]' : 'text-gray-600'
                 }`}
               >
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#D4AF37] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.15em] hover:bg-gray-900 transition-all shadow-lg shadow-[#D4AF37]/20"
+              className="bg-[#D4AF37] text-white px-6 lg:px-8 py-3 rounded-full text-[9px] lg:text-[10px] font-bold tracking-[0.15em] hover:bg-gray-900 transition-all shadow-lg shadow-[#D4AF37]/20 whitespace-nowrap"
             >
               BOOK NOW
             </a>

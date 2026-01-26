@@ -14,6 +14,7 @@ import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
+import Collaborations from './pages/Collaborations';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import CookiePolicy from './pages/CookiePolicy';
@@ -58,6 +59,7 @@ const App: React.FC = () => {
                   <Route path="/academy" element={<Academy />} />
                   <Route path="/portfolio" element={<Portfolio />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/collaborations" element={<Collaborations />} />
                   <Route path="/booking" element={<Booking />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />

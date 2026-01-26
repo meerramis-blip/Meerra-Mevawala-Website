@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useStore } from '../store';
 import { Mail, Phone, MapPin, Instagram, Clock, Send, Sparkles, MessageCircle, Twitter, Linkedin, Youtube, Facebook } from 'lucide-react';
@@ -148,7 +147,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm uppercase tracking-widest text-gray-900">Studio Hours</h4>
-                    <p className="text-gray-500 text-sm">Mon - Sun: 10:00 AM - 08:00 PM</p>
+                    <p className="text-gray-500 text-sm">Mon - Sat: 11:00 AM - 05:00 PM</p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">

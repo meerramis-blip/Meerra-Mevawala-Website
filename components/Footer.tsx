@@ -61,6 +61,7 @@ const Footer: React.FC = () => {
               <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Makeup Services</Link></li>
               <li><Link to="/academy" className="hover:text-white transition-colors">Academy</Link></li>
+              <li><Link to="/collaborations" className="hover:text-white transition-colors">Collaborations</Link></li>
               <li><a href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent("Hi, I'd like to book an appointment.")}`} className="hover:text-white transition-colors">Book Now</a></li>
             </ul>
           </div>
