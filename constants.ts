@@ -97,7 +97,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Professional',
       certification: 'MIS Fundamental Makeup Certificate',
       curriculum: ['Hygiene & Health Safety', 'Product Research', 'Color-wheel Theory', 'Natural & Day Makeup', 'Ethnic/Traditional Looks', 'Mature Skin Techniques'],
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
     },
     {
       id: 'c14',
@@ -108,7 +108,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Professional',
       certification: 'MIS Professional Advancement Certificate',
       curriculum: ['Eye Mapping & Shading', 'Glitter Application', 'Arabic Eye Makeup', 'Waterproof Mastery', 'Baking & Contouring', 'Color Transitions'],
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
+      image: 'https://images.unsplash.com/photo-1522338228048-3506018615c1?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c15',
@@ -119,7 +119,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Professional',
       certification: 'MIS Advanced Professional Certification',
       curriculum: ['Dusky Skin Mastery', 'Society & Party Makeup', 'Red Carpet Glamour', 'Character Makeup Looks', 'Sunkissed & Glowy Skin', 'Glossy Eye Techniques'],
-      image: 'https://images.unsplash.com/photo-1522338228048-3506018615c1?q=80&w=2070&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop'
     },
     {
       id: 'c3',
@@ -134,58 +134,58 @@ export const INITIAL_STATE: AppState = {
     },
     {
       id: 'c4',
-      title: 'LEVEL MIS ADVANCE SELF MAKEUP',
+      title: 'LEVEL MIS 2 - ADVANCE SELF MAKEUP',
       description: 'Advanced one-on-one personal makeup classes for those who want to master sophisticated party and glam looks.',
       duration: '4 Days (8 hours)',
       price: '₹14,999',
       category: 'Makeup',
       certification: 'MIS Advanced Certificate',
       curriculum: ['Soft Glam Techniques', 'Smokey Eyes Variations', 'Glitter Application', 'Lash Application', 'Contour & Highlight'],
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c10',
-      title: 'LEVEL MIS 2 - AIRBRUSH MAKEUP',
+      title: 'LEVEL MIS 3 - AIRBRUSH MAKEUP',
       description: 'Certified Makeup Masterclass focusing on the professional application of Airbrush makeup for high-definition results.',
       duration: '2 Days',
       price: '₹19,999',
       category: 'Makeup',
       certification: 'MIS Airbrush Specialist Certificate',
       curriculum: ['Airbrush Equipment', 'HD Skin Finish', 'Product Dilution', 'Precision Contouring', 'Maintenance'],
-      image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1515688594583-b0fe057204f3?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c11',
-      title: 'LEVEL MIS 3 - CREATIVE COMPETITION MAKEUP',
+      title: 'LEVEL MIS 4 - CREATIVE COMPETITION MAKEUP',
       description: 'Intensive masterclass for artists looking to enter professional makeup competitions and create avant-garde editorial looks.',
       duration: '3 Days',
       price: '₹26,999',
       category: 'Makeup',
       certification: 'MIS Creative Artistry Diploma',
       curriculum: ['Avant-Garde Theory', 'Thematic Makeup', 'Color Blocking', 'Face Jewelry/Adornment', 'Symmetry Mastery'],
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
+      image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c12',
-      title: 'LEVEL MIS 4 - LATEST BRIDAL TRENDS',
+      title: 'LEVEL MIS 5 - LATEST BRIDAL TRENDS',
       description: 'Comprehensive Look and Learn workshop with practical sessions focusing on the most current global bridal makeup trends.',
       duration: '3 to 5 Days',
       price: 'Contact for Fees',
       category: 'Makeup',
       certification: 'MIS Bridal Trends Certification',
       curriculum: ['Modern Bridal Finishes', 'Global Saree Draping', 'Jewelry Coordination', 'Waterproof Mastery', 'Photography Prep'],
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
+      image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop'
     },
     {
       id: 'c13',
-      title: 'LEVEL MIS 5 - MEERRAS SIGNATURE LOOK',
+      title: 'LEVEL MIS 6 - MEERRAS SIGNATURE LOOK',
       description: 'A special "Look and Learn" Master Class detailing the iconic signature styling of Meerra Mevawala.',
       duration: '2 Days',
       price: '₹9,999',
       category: 'Makeup',
       certification: 'MIS Signature Look Certificate',
       curriculum: ['The Glow Signature', 'Seamless Blending', 'Product Secret Stash', 'Lighting for Makeup', 'Speed Artistry'],
-      image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
     },
     {
       id: 'c8',
@@ -196,7 +196,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Hair',
       certification: 'MIS Thermal Styling Certificate',
       curriculum: ['Voluminous Blowout', 'Ironing & Tongs Variation', 'Hollywood Waves', 'Extension Styling', 'Front Variations'],
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg'
+      image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop'
     },
     {
       id: 'c9',
@@ -221,19 +221,8 @@ export const INITIAL_STATE: AppState = {
       image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1974&auto=format&fit=crop'
     },
     {
-      id: 'c6',
-      title: 'LEVEL N2 - NAIL PROFESSIONAL COURSE',
-      description: 'Professional Nail Technician training with India Champion RAMKUI SIR. Master advanced acrylic techniques and salon management.',
-      duration: '10 Days (Every Thursday)',
-      price: '₹34,999',
-      category: 'Nail',
-      certification: 'MIS Professional Nail Certification',
-      curriculum: ['Acrylic Level 1', 'Advance Machine Manicure', 'Inbuilt French Technique', 'Business Strategy'],
-      image: 'https://images.unsplash.com/photo-1610992015732-2449b0c26670?q=80&w=1974&auto=format&fit=crop'
-    },
-    {
       id: 'c7',
-      title: 'LEVEL N3 - NAIL TECHNICIAN COURSE',
+      title: 'LEVEL N2 - NAIL TECHNICIAN COURSE',
       description: 'Complete comprehensive Nail Technician program covering anatomy, multiple extension systems, and advanced Russian filing.',
       duration: '20 Days (One Month)',
       price: '₹59,999',

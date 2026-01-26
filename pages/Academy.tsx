@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useStore } from '../store';
 import { 
@@ -22,7 +21,10 @@ import {
   HelpCircle,
   ChevronDown,
   ChevronUp,
-  CreditCard
+  CreditCard,
+  User,
+  Clock,
+  MessageCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PaymentDetails from '../components/PaymentDetails';
@@ -217,6 +219,82 @@ const Academy: React.FC = () => {
         </div>
       </section>
 
+      {/* NEW: Private One-on-One Makeup Class Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
+        <div className="bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-gray-50 flex flex-col lg:flex-row items-stretch">
+          <div className="lg:w-1/2 relative min-h-[500px]">
+            <img 
+              src="https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop" 
+              alt="Private One-on-One Makeup Class" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20"></div>
+            <div className="absolute top-8 left-8">
+              <div className="bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl flex items-center gap-3 shadow-xl">
+                <Sparkles className="text-[#D4AF37]" size={20} />
+                <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">Premium Mentorship</span>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 p-12 md:p-20 flex flex-col justify-center bg-[#FDFCFB]">
+            <span className="text-[10px] font-bold tracking-[0.4em] text-[#D4AF37] uppercase mb-4 block">Bespoke Training</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">Private One-on-One <br /> Makeup Class</h2>
+            
+            <p className="text-gray-600 text-lg leading-relaxed mb-10">
+              Elevate your artistry with an exclusive, fully personalized one-on-one makeup training session. Designed for brides, beginners, and professionals alike, this bespoke masterclass is conducted personally by our senior makeup artist. Experience the traditional power of direct mentorship with flexible timings and complete privacy, ensuring every technique is mastered to perfection under expert guidance. This is your chance to receive undivided attention and refine your skills with specialized, hands-on professional feedback.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12 mb-12">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#F5E6E8] rounded-xl flex items-center justify-center text-[#D4AF37] shrink-0">
+                  <User size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-widest mb-1">Personalized</h4>
+                  <p className="text-xs text-gray-500">Tailored to your specific skill level and goals.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#F5E6E8] rounded-xl flex items-center justify-center text-[#D4AF37] shrink-0">
+                  <Star size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-widest mb-1">Expert Led</h4>
+                  <p className="text-xs text-gray-500">Conducted personally by a senior artist.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#F5E6E8] rounded-xl flex items-center justify-center text-[#D4AF37] shrink-0">
+                  <Clock size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-widest mb-1">Flexible</h4>
+                  <p className="text-xs text-gray-500">Schedule sessions at your convenience.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#F5E6E8] rounded-xl flex items-center justify-center text-[#D4AF37] shrink-0">
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-widest mb-1">Private</h4>
+                  <p className="text-xs text-gray-500">Complete privacy for focused learning.</p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi, I'm interested in the Private One-on-One Makeup Class. Could you share more details about the curriculum and available dates?")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#D4AF37] text-white px-10 py-5 rounded-2xl font-bold text-[10px] tracking-[0.3em] hover:bg-gray-900 transition-all shadow-xl shadow-[#D4AF37]/30 flex items-center justify-center gap-3 uppercase w-full sm:w-max"
+            >
+              WhatsApp Us for Class Details <MessageCircle size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Payment Section for Students */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-12">
@@ -273,7 +351,7 @@ const Academy: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {careerPaths.map((path, idx) => (
             <div key={idx} className="bg-[#FDFCFB] p-10 rounded-[2.5rem] border border-gray-100 hover:border-[#D4AF37] hover:shadow-2xl transition-all group flex flex-col">
-              <div className="w-16 h-16 bg-[#F5E6E8] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#D4AF37] transition-all shrink-0">
+              <div className="w-16 h-16 bg-[#F5E6E8] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#D4AF37] transition-all duration-500 shrink-0">
                 <path.icon className="text-[#D4AF37] group-hover:text-white" size={32} />
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">{path.title}</h3>
