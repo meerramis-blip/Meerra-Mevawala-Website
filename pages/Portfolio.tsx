@@ -30,19 +30,30 @@ const PROFESSIONAL_WORKS = [
   { id: 'pw-12', title: 'Cinematic Finish', subtitle: 'Film & Media Masterwork', image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=800&auto=format&fit=crop' },
 ];
 
+// Curated 12 bridal high-quality works for a luxury editorial look
+const BRIDE_WORKS = [
+  { id: 'bw-1', title: 'Traditional Red', subtitle: 'Royal Bridal Glow', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-2', title: 'Pastel Dream', subtitle: 'Soft Reception Look', image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-3', title: 'Sari Draping', subtitle: 'South Indian Grace', image: 'https://images.unsplash.com/photo-1621184414184-0155f0ce820a?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-4', title: 'Modern Bride', subtitle: 'Dewy Finish & Nude Tones', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-5', title: 'Bridal Sangeet', subtitle: 'Sparkling Glamour', image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-6', title: 'Mehendi Look', subtitle: 'Vibrant & Natural', image: 'https://images.unsplash.com/photo-1515688594583-b0fe057204f3?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-7', title: 'Reception Glow', subtitle: 'High-End Artistry', image: 'https://images.unsplash.com/photo-1516584227406-fc053b47c9af?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-8', title: 'Classic Indian', subtitle: 'Heritage Look', image: 'https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-9', title: 'Contemporary Glam', subtitle: 'Bridal Portfolios', image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-10', title: 'Cocktail Night', subtitle: 'Sleek & Sophisticated', image: 'https://images.unsplash.com/photo-1525129498994-5805ec7859d3?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-11', title: 'Haldi Glow', subtitle: 'Fresh & Radiant', image: 'https://images.unsplash.com/photo-1527719327859-c6ce80353573?q=80&w=800&auto=format&fit=crop' },
+  { id: 'bw-12', title: 'The Grand Entry', subtitle: 'Final Touch-ups', image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800&auto=format&fit=crop' },
+];
+
 const Portfolio: React.FC = () => {
   const { state } = useStore();
   const [activeTab, setActiveTab] = useState<Category>('Professional');
   const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
   const instagramUrl = state.settings.instagramUrl;
+  const bridalInstagramUrl = "https://www.instagram.com/makeupartist.meerramevawala";
 
   const portfolioItems: PortfolioItem[] = [
-    // BRIDES
-    { id: 'b1', category: 'Brides', title: 'The Royal Wedding', subtitle: 'Traditional Red Bridal Glory', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop', size: 'large' },
-    { id: 'b2', category: 'Brides', title: 'Contemporary Elegance', subtitle: 'Pastel Reception Look', image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop', size: 'tall' },
-    { id: 'b3', category: 'Brides', title: 'South Indian Grace', subtitle: 'Sari Draping & Traditional Glam', image: 'https://images.unsplash.com/photo-1621184414184-0155f0ce820a?q=80&w=1974&auto=format&fit=crop' },
-    { id: 'b4', category: 'Brides', title: 'Minimalist Bride', subtitle: 'Dewy Finish & Nude Tones', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop' },
-
     // STUDENTS
     { id: 's1', category: 'Students', title: 'Editorial Assessment', subtitle: 'By Batch of 2023', image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop', size: 'large' },
     { id: 's2', category: 'Students', title: 'SFX & Prosthetics', subtitle: 'Cinematic Makeup Module', image: 'https://images.unsplash.com/photo-1526045431048-f857369aba09?q=80&w=2070&auto=format&fit=crop' },
@@ -119,51 +130,64 @@ const Portfolio: React.FC = () => {
               <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6 opacity-30"></div>
             </div>
             
-            {/* Luxury Editorial Grid: 3 Columns Desktop, 12 items */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
               {PROFESSIONAL_WORKS.map((work, idx) => (
-                <div 
-                  key={work.id}
-                  className="group relative flex flex-col"
-                >
-                  {/* Decorative Frame */}
+                <div key={work.id} className="group relative flex flex-col">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-50 transition-all duration-700 shadow-sm hover:shadow-2xl">
-                    <img 
-                      src={work.image} 
-                      alt={work.title} 
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    {/* Editorial Overlay */}
+                    <img src={work.image} alt={work.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
                        <Plus className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" size={32} />
                     </div>
-                    {/* Index Counter */}
                     <div className="absolute top-6 left-6 text-white/50 text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
                       {(idx + 1).toString().padStart(2, '0')}
                     </div>
                   </div>
-                  
-                  {/* Caption */}
                   <div className="space-y-2 text-center">
-                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">
-                      {work.title}
-                    </h3>
-                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
-                      {work.subtitle}
-                    </p>
+                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">{work.title}</h3>
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">{work.subtitle}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="flex justify-center pt-16">
-              <a 
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-4 bg-white border border-gray-100 text-gray-900 px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-gray-900 hover:text-white transition-all shadow-xl shadow-gray-200"
-              >
+              <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center gap-4 bg-white border border-gray-100 text-gray-900 px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-gray-900 hover:text-white transition-all shadow-xl shadow-gray-200">
                 DISCOVER MORE ON INSTAGRAM <Instagram size={14} className="group-hover:text-[#D4AF37]" />
+                <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37] opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              </a>
+            </div>
+          </div>
+        ) : activeTab === 'Brides' ? (
+          <div className="space-y-20">
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-bold tracking-[0.6em] text-[#D4AF37] uppercase mb-4 block">Bridal Elegance</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">Brides by Meerra</h2>
+              <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6 opacity-30"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+              {BRIDE_WORKS.map((work, idx) => (
+                <div key={work.id} className="group relative flex flex-col">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-50 transition-all duration-700 shadow-sm hover:shadow-2xl">
+                    <img src={work.image} alt={work.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+                       <Plus className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" size={32} />
+                    </div>
+                    <div className="absolute top-6 left-6 text-white/50 text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                      {(idx + 1).toString().padStart(2, '0')}
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-center">
+                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">{work.title}</h3>
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">{work.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center pt-16">
+              <a href={bridalInstagramUrl} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center gap-4 bg-white border border-gray-100 text-gray-900 px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-gray-900 hover:text-white transition-all shadow-xl shadow-gray-200">
+                SEE MORE ON INSTAGRAM <Instagram size={14} className="group-hover:text-[#D4AF37]" />
                 <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37] opacity-0 group-hover:opacity-20 transition-opacity"></div>
               </a>
             </div>
@@ -182,7 +206,6 @@ const Portfolio: React.FC = () => {
                   alt={item.title} 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                {/* Subtle Dark Overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
                   <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
                     <span className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-2 block">{item.category}</span>
