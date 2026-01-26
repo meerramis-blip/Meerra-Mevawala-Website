@@ -1,5 +1,5 @@
 
-import { AppState, SiteSettings } from './types';
+import { AppState, SiteSettings } from './types'; 
 
 export const INITIAL_SETTINGS: SiteSettings = {
   brandName: "Meerra Mevawala",
