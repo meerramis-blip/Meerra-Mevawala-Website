@@ -10,11 +10,10 @@ const Home: React.FC = () => {
   const { state } = useStore();
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
-  const specialServices = state.services.filter(
-    s => s.id === 's5' || s.id === 's6'
-  );
+  const videoTestimonials = state.testimonials.filter(t => t.videoUrl);
+  const specialServices = state.services.filter(s => s.id === 's5' || s.id === 's6');
 
-    return (
+  return (
     <div className="flex flex-col min-h-screen">
       <SEO 
         title="Best Bridal Makeup Artist & Academy in Mumbai"
@@ -45,7 +44,7 @@ const Home: React.FC = () => {
         <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697728c3c1fa0c5ebdb42d8b.png?q=80&w=2071&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop"
               alt="Luxury Makeup Artistry in Mumbai"
               className="w-full h-full object-cover"
             />
@@ -154,7 +153,7 @@ const Home: React.FC = () => {
               <div className="lg:w-1/2">
                 <div className="relative">
                   <img
-                    src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974?q=80&w=1935&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop"
                     alt="Professional Makeup School Mumbai"
                     className="rounded-2xl shadow-2xl relative z-10"
                   />
@@ -191,80 +190,52 @@ const Home: React.FC = () => {
       </EditableSection>
 
       {/* Testimonials Highlights */}
-<EditableSection label="Testimonials" file="constants.ts" variable="INITIAL_STATE.testimonials">
-  <section className="py-24 bg-[#FDFCFB] overflow-hidden border-t border-gray-100">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      {/* Section Heading */}
-      <div className="text-center mb-16">
-        <h2 className="text-xs font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-4">
-          Reviews & Transformations
-        </h2>
-        <p className="text-4xl font-serif font-bold text-gray-900">
-          What Our Brides Say
-        </p>
-        <div className="w-20 h-1 bg-[#D4AF37] mx-auto mt-6"></div>
-      </div>
-
-      {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {state.testimonials.map((t) => (
-          <a
-            key={t.id}
-            href={t.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group cursor-pointer overflow-hidden rounded-[2.5rem] shadow-2xl bg-gray-100"
-          >
-            {/* Image */}
-            <div className="aspect-[9/16] overflow-hidden">
-              <img
-                src={t.image}
-                alt={`${t.name} - Bridal Review`}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:via-black/40 transition-all duration-500"></div>
+      <EditableSection label="Testimonials" file="constants.ts" variable="INITIAL_STATE.testimonials">
+        <section className="py-24 bg-[#FDFCFB] overflow-hidden border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-xs font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-4">Reviews & Transformations</h2>
+              <p className="text-4xl font-serif font-bold text-gray-900">What Our Brides Say</p>
+              <div className="w-20 h-1 bg-[#D4AF37] mx-auto mt-6"></div>
             </div>
 
-            {/* Play Icon (Visual Only) */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 bg-[#D4AF37]/90 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-[#D4AF37]/40 relative">
-                <Play fill="currentColor" size={32} className="ml-1" />
-                <div className="absolute inset-0 rounded-full border-2 border-[#D4AF37] animate-ping opacity-20"></div>
-              </div>
-            </div>
-
-            {/* Text Overlay */}
-            <div className="absolute bottom-10 left-10 right-10 text-white">
-              <div className="flex items-center gap-2 text-[#D4AF37] mb-2">
-                <Quote size={20} fill="currentColor" className="opacity-50" />
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={10}
-                      fill="currentColor"
-                      className="text-[#D4AF37]"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {videoTestimonials.map((t) => (
+                <div 
+                  key={t.id} 
+                  className="relative group cursor-pointer overflow-hidden rounded-[2.5rem] shadow-2xl bg-gray-100"
+                  onClick={() => setActiveVideo(t.videoUrl!)}
+                >
+                  <div className="aspect-[9/16] overflow-hidden">
+                    <img 
+                      src={t.videoThumbnail || t.image} 
+                      alt={`${t.name} - Bridal Review`} 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                  ))}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/40 transition-all duration-500"></div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 bg-[#D4AF37]/90 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-[#D4AF37]/40 relative">
+                      <Play fill="currentColor" size={32} className="ml-1" />
+                      <div className="absolute inset-0 rounded-full border-2 border-[#D4AF37] animate-ping opacity-20"></div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-10 left-10 right-10 text-white">
+                    <div className="flex items-center gap-2 text-[#D4AF37] mb-2">
+                      <Quote size={20} fill="currentColor" className="opacity-50" />
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" className="text-[#D4AF37]" />)}
+                      </div>
+                    </div>
+                    <h4 className="text-2xl font-serif font-bold mb-1">{t.name}</h4>
+                    <p className="text-[10px] font-bold tracking-widest uppercase text-gray-300 opacity-80">{t.role}</p>
+                  </div>
                 </div>
-              </div>
-
-              <h4 className="text-2xl font-serif font-bold mb-1">
-                {t.name}
-              </h4>
-              <p className="text-[10px] font-bold tracking-widest uppercase text-gray-300 opacity-80">
-                {t.role}
-              </p>
+              ))}
             </div>
-
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-</EditableSection>
+          </div>
+        </section>
+      </EditableSection>
     </div>
   );
 };
