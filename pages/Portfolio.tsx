@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, GraduationCap, Trophy, Award, ExternalLink, ArrowRight, Heart, Camera, Star, Crown } from 'lucide-react';
+import { Sparkles, GraduationCap, Trophy, Award, ExternalLink, ArrowRight, Heart, Camera, Star, Crown, Instagram, Plus } from 'lucide-react';
 import { useStore } from '../store';
 
 type Category = 'Professional' | 'Brides' | 'Students' | 'Awards';
@@ -15,18 +14,29 @@ interface PortfolioItem {
   size?: 'normal' | 'large' | 'tall';
 }
 
+// Curated 12 high-quality professional work items for a luxury editorial look
+const PROFESSIONAL_WORKS = [
+  { id: 'pw-1', title: 'Editorial Masterclass', subtitle: 'Fashion Week Look', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif' },
+  { id: 'pw-2', title: 'Celestial Glow', subtitle: 'Signature Bridal Prep', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg' },
+  { id: 'pw-3', title: 'Editorial Red', subtitle: 'PNI Magazine Cover', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif' },
+  { id: 'pw-4', title: 'Golden Hour', subtitle: 'Luxury Reception Glam', image: 'https://images.unsplash.com/photo-1522338228048-3506018615c1?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-5', title: 'Modern Traditional', subtitle: 'Contemporary Bridal', image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-6', title: 'Royal Heritage', subtitle: 'Traditional Indian Elegance', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-7', title: 'The Dewy Look', subtitle: 'Minimalist Editorial', image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-8', title: 'High Definition Art', subtitle: 'HD Professional Finish', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-9', title: 'Velvet Softness', subtitle: 'Classic Wedding Glam', image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-10', title: 'Runway Ready', subtitle: 'Backstage Chronicles', image: 'https://images.unsplash.com/photo-1526045431048-f857369aba09?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-11', title: 'Timeless Beauty', subtitle: 'Maturity & Grace', image: 'https://images.unsplash.com/photo-1503910361307-44301bd23c59?q=80&w=800&auto=format&fit=crop' },
+  { id: 'pw-12', title: 'Cinematic Finish', subtitle: 'Film & Media Masterwork', image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=800&auto=format&fit=crop' },
+];
+
 const Portfolio: React.FC = () => {
   const { state } = useStore();
   const [activeTab, setActiveTab] = useState<Category>('Professional');
   const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
+  const instagramUrl = state.settings.instagramUrl;
 
   const portfolioItems: PortfolioItem[] = [
-    // PROFESSIONAL WORK
-    { id: 'p1', category: 'Professional', title: 'Miss Earth 2021', subtitle: 'Editorial Makeup for PNI Magazine', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif', size: 'large' },
-    { id: 'p2', category: 'Professional', title: 'Lakme Fashion Week', subtitle: 'Backstage High-Fashion Artistry', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg' },
-    { id: 'p3', category: 'Professional', title: 'Miss Eco International', subtitle: 'Stars Cosmetics Core Team', image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop', size: 'tall' },
-    { id: 'p4', category: 'Professional', title: 'Bharat Icon Awards', subtitle: 'Celebrity Styling', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif' },
-    
     // BRIDES
     { id: 'b1', category: 'Brides', title: 'The Royal Wedding', subtitle: 'Traditional Red Bridal Glory', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop', size: 'large' },
     { id: 'b2', category: 'Brides', title: 'Contemporary Elegance', subtitle: 'Pastel Reception Look', image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop', size: 'tall' },
@@ -101,35 +111,94 @@ const Portfolio: React.FC = () => {
 
       {/* Gallery Section */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-          {filteredItems.map((item) => (
-            <div 
-              key={item.id} 
-              className={`relative break-inside-avoid overflow-hidden rounded-[2rem] group bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer ${
-                item.size === 'large' ? 'aspect-[4/5]' : item.size === 'tall' ? 'aspect-[2/3]' : 'aspect-square'
-              }`}
-            >
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-              />
-              {/* Subtle Dark Overlay */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
-                <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-2 block">{item.category}</span>
-                  <h3 className="text-2xl font-serif font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-300 text-sm mb-6 leading-relaxed">{item.subtitle}</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all">
-                      <ExternalLink size={16} />
+        {activeTab === 'Professional' ? (
+          <div className="space-y-20">
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-bold tracking-[0.6em] text-[#D4AF37] uppercase mb-4 block">Curated Artistry</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">Professional Portfolios</h2>
+              <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6 opacity-30"></div>
+            </div>
+            
+            {/* Luxury Editorial Grid: 3 Columns Desktop, 12 items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+              {PROFESSIONAL_WORKS.map((work, idx) => (
+                <div 
+                  key={work.id}
+                  className="group relative flex flex-col"
+                >
+                  {/* Decorative Frame */}
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-50 transition-all duration-700 shadow-sm hover:shadow-2xl">
+                    <img 
+                      src={work.image} 
+                      alt={work.title} 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    {/* Editorial Overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+                       <Plus className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" size={32} />
+                    </div>
+                    {/* Index Counter */}
+                    <div className="absolute top-6 left-6 text-white/50 text-[10px] font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                      {(idx + 1).toString().padStart(2, '0')}
+                    </div>
+                  </div>
+                  
+                  {/* Caption */}
+                  <div className="space-y-2 text-center">
+                    <h3 className="text-xl font-serif font-bold text-gray-900 group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">
+                      {work.title}
+                    </h3>
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
+                      {work.subtitle}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center pt-16">
+              <a 
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-4 bg-white border border-gray-100 text-gray-900 px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.4em] hover:bg-gray-900 hover:text-white transition-all shadow-xl shadow-gray-200"
+              >
+                DISCOVER MORE ON INSTAGRAM <Instagram size={14} className="group-hover:text-[#D4AF37]" />
+                <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37] opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+            {filteredItems.map((item) => (
+              <div 
+                key={item.id} 
+                className={`relative break-inside-avoid overflow-hidden rounded-[2rem] group bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer ${
+                  item.size === 'large' ? 'aspect-[4/5]' : item.size === 'tall' ? 'aspect-[2/3]' : 'aspect-square'
+                }`}
+              >
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                {/* Subtle Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                  <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-2 block">{item.category}</span>
+                    <h3 className="text-2xl font-serif font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">{item.subtitle}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all">
+                        <ExternalLink size={16} />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Dynamic CTAs based on Category */}
         <div className="mt-24 text-center">
