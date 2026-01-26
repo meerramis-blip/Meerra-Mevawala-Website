@@ -1,4 +1,3 @@
-
 import { AppState, SiteSettings } from './types';
 
 export const INITIAL_SETTINGS: SiteSettings = {
@@ -40,7 +39,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹25,000',
       duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6972161f5c6b6c0032542a20.jpeg'
     },
     {
       id: 's3',
@@ -52,13 +51,22 @@ export const INITIAL_STATE: AppState = {
       image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
     },
     {
+      id: 's7',
+      title: 'PRE-BRIDAL SHOOT',
+      description: 'Comprehensive professional makeup and hairstyling for your pre-wedding photoshoot. Includes look changes and touch-ups throughout the day to ensure perfection in every frame.',
+      price: '₹25,000',
+      duration: '8 Hours',
+      category: 'Bridal',
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e515885e80b07c00c5.jfif'
+    },
+    {
       id: 's4',
       title: 'ENGAGEMENT / SISTER MAKEUP',
       description: 'Sophisticated and elegant look for the bride\'s sister or for engagement ceremonies.',
       price: '₹18,000',
       duration: '2 Hours',
       category: 'Party',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697215cbcff5694f33359411.jpeg'
     },
     {
       id: 's5',
@@ -67,16 +75,16 @@ export const INITIAL_STATE: AppState = {
       price: '₹12,500',
       duration: '2 Hours',
       category: 'Special',
-      image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697216ac4a64640501509374.jpeg'
     },
     {
       id: 's6',
-      title: 'GROOM MAKEUP & PERSONAL GROOMING',
+      title: 'GROOM MAKEUP',
       description: 'Natural, camera-ready grooming to ensure a flawless and polished look for the groom on his special day.',
       price: '₹5,000',
       duration: '0.5 Hours',
       category: 'Special',
-      image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2001&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69721659d740ae4f18cff776.jpeg'
     }
   ],
   courses: [
