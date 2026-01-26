@@ -122,17 +122,6 @@ export const INITIAL_STATE: AppState = {
       image: 'https://images.unsplash.com/photo-1522338228048-3506018615c1?q=80&w=2070&auto=format&fit=crop'
     },
     {
-      id: 'c1',
-      title: 'LEVEL 3 - CIDESCO INTERNATIONAL MEDIA MAKEUP DIPLOMA',
-      description: 'The ultimate professional course at Meerras International school. Valid worldwide, this course covers everything from intermediate/foundation to next-advance pro levels including film, TV, and fashion.',
-      duration: '12 Weeks (340 Hours)',
-      price: '₹2,24,999',
-      category: 'Professional',
-      certification: 'CIDESCO International Diploma (Zurich)',
-      curriculum: ['Advanced Color Theory', 'Practical Eye Mapping', 'Asian & Arabic Makeup', 'Special Occasion Mastery', 'Editorial & Fantasy Looks', 'Photography Makeup'],
-      image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
-    },
-    {
       id: 'c3',
       title: 'LEVEL MIS 1 - SELF MAKEUP',
       description: 'One-on-one personal makeup classes personally taught by Meerra Mevawala or Hrishita Mevawala. Perfect for mastering your daily look.',
