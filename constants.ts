@@ -1,5 +1,5 @@
 
-import { AppState, SiteSettings } from './types'; 
+import { AppState, SiteSettings } from './types';
 
 export const INITIAL_SETTINGS: SiteSettings = {
   brandName: "Meerra Mevawala",
@@ -31,7 +31,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹30,000',
       duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif?q=80&w=1964&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
     },
     {
       id: 's2',
@@ -40,7 +40,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹25,000',
       duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg?q=80&w=2069&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg'
     },
     {
       id: 's3',
@@ -49,7 +49,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹18,000',
       duration: '2 Hours',
       category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif?q=80&w=1935&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
     },
     {
       id: 's4',
@@ -58,7 +58,7 @@ export const INITIAL_STATE: AppState = {
       price: '₹18,000',
       duration: '2 Hours',
       category: 'Party',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697215cbcff5694f33359411.jpeg?q=80&w=2071&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
     },
     {
       id: 's5',
@@ -67,29 +67,19 @@ export const INITIAL_STATE: AppState = {
       price: '₹12,500',
       duration: '2 Hours',
       category: 'Special',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697216ac4a64640501509374.jpeg?q=80&w=2087&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop'
     },
     {
       id: 's6',
-      title: 'GROOM MAKEUP',
+      title: 'GROOM MAKEUP & PERSONAL GROOMING',
       description: 'Natural, camera-ready grooming to ensure a flawless and polished look for the groom on his special day.',
       price: '₹5,000',
-      duration: '0.5 Hour',
+      duration: '0.5 Hours',
       category: 'Special',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69721659d740ae4f18cff776.jpeg?q=80&w=2001&auto=format&fit=crop'
-    },
-    {
-      id: 's7',
-      title: 'PRE BRIDAL SHOOT',
-      description: 'Luxury pre-bridal makeup designed to enhance natural beauty, perfect skin, and timeless elegance for every celebration.',
-      price: '₹25,000',
-      duration: '8 Hours',
-      category: 'Bridal',
-      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e515885e80b07c00c5.jfif?q=80&w=2087&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2001&auto=format&fit=crop'
     }
   ],
   courses: [
-    // PROFESSIONAL TRACK - ORDERED BY LEVEL
     {
       id: 'c2',
       title: 'LEVEL 1A - FUNDAMENTAL MAKEUP',
@@ -99,7 +89,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Professional',
       certification: 'MIS Fundamental Makeup Certificate',
       curriculum: ['Hygiene & Health Safety', 'Product Research', 'Color-wheel Theory', 'Natural & Day Makeup', 'Ethnic/Traditional Looks', 'Mature Skin Techniques'],
-      image: 'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=1964&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
     },
     {
       id: 'c14',
@@ -110,7 +100,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Professional',
       certification: 'MIS Professional Advancement Certificate',
       curriculum: ['Eye Mapping & Shading', 'Glitter Application', 'Arabic Eye Makeup', 'Waterproof Mastery', 'Baking & Contouring', 'Color Transitions'],
-      image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
     },
     {
       id: 'c15',
@@ -134,8 +124,6 @@ export const INITIAL_STATE: AppState = {
       curriculum: ['Advanced Color Theory', 'Practical Eye Mapping', 'Asian & Arabic Makeup', 'Special Occasion Mastery', 'Editorial & Fantasy Looks', 'Photography Makeup'],
       image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
     },
-
-    // SELF MAKEUP CATEGORY
     {
       id: 'c3',
       title: 'LEVEL MIS 1 - SELF MAKEUP',
@@ -158,8 +146,6 @@ export const INITIAL_STATE: AppState = {
       curriculum: ['Soft Glam Techniques', 'Smokey Eyes Variations', 'Glitter Application', 'Lash Application', 'Contour & Highlight'],
       image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
     },
-
-    // SPECIALIZED MASTERCLASSES
     {
       id: 'c10',
       title: 'LEVEL MIS 2 - AIRBRUSH MAKEUP',
@@ -180,7 +166,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Makeup',
       certification: 'MIS Creative Artistry Diploma',
       curriculum: ['Avant-Garde Theory', 'Thematic Makeup', 'Color Blocking', 'Face Jewelry/Adornment', 'Symmetry Mastery'],
-      image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif'
     },
     {
       id: 'c12',
@@ -191,7 +177,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Makeup',
       certification: 'MIS Bridal Trends Certification',
       curriculum: ['Modern Bridal Finishes', 'Global Saree Draping', 'Jewelry Coordination', 'Waterproof Mastery', 'Photography Prep'],
-      image: 'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=1964&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif'
     },
     {
       id: 'c13',
@@ -204,8 +190,6 @@ export const INITIAL_STATE: AppState = {
       curriculum: ['The Glow Signature', 'Seamless Blending', 'Product Secret Stash', 'Lighting for Makeup', 'Speed Artistry'],
       image: 'https://images.unsplash.com/photo-1595475253508-37299092413e?q=80&w=2070&auto=format&fit=crop'
     },
-
-    // HAIR COURSES
     {
       id: 'c8',
       title: 'LEVEL MIS A - THERMAL HAIRSTYLE',
@@ -215,7 +199,7 @@ export const INITIAL_STATE: AppState = {
       category: 'Hair',
       certification: 'MIS Thermal Styling Certificate',
       curriculum: ['Voluminous Blowout', 'Ironing & Tongs Variation', 'Hollywood Waves', 'Extension Styling', 'Front Variations'],
-      image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop'
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg'
     },
     {
       id: 'c9',
@@ -228,8 +212,6 @@ export const INITIAL_STATE: AppState = {
       curriculum: ['Fundamentals of Hair', 'Bridal Advance Course', 'Traditional Updos', 'Modern Braiding', 'Contemporary Stylings'],
       image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1974&auto=format&fit=crop'
     },
-
-    // NAIL COURSES
     {
       id: 'c5',
       title: 'LEVEL N1 - NAIL ART WORKSHOP',
@@ -265,38 +247,40 @@ export const INITIAL_STATE: AppState = {
     }
   ],
   testimonials: [
-  {
-    id: 't1',
-    name: 'Sai Lokhande',
-    role: 'Bride',
-    content:
-      'She had done such a great job! I was so happy with my looks. Got tons of compliments.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop',
-    link: 'https://www.instagram.com/' // replace with actual link
-  },
-  {
-    id: 't2',
-    name: 'Mausam Agrawal',
-    role: 'Bride',
-    content:
-      'She did my bridal makeup and I really loved it! Got so many compliments for all my looks.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop',
-    link: 'https://www.instagram.com/' // replace with actual link
-  },
-  {
-    id: 't3',
-    name: 'Lakshita Gaddam',
-    role: 'Academy Graduate',
-    content:
-      'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop',
-    link: 'https://www.instagram.com/' // replace with actual link
-  }
-],
-
+    {
+      id: 't1',
+      name: 'Sai Lokhande',
+      lookTitle: 'Royal Traditional Bridal Glow',
+      role: 'Bride',
+      content: 'She had done such a great job! I was so happy with my looks. Got tons of compliments.',
+      rating: 5,
+      image: 'https://picsum.photos/seed/user1/100/100',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      videoThumbnail: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop'
+    },
+    {
+      id: 't2',
+      name: 'Mausam Agrawal',
+      lookTitle: 'Soft Glam Modern Reception Look',
+      role: 'BRIDE',
+      content: 'She did my bridal makeup and I really loved it! Got so many compliments for all my looks.',
+      rating: 5,
+      image: 'https://picsum.photos/seed/user2/100/100',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      videoThumbnail: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
+    },
+    {
+      id: 't3',
+      name: 'Lakshita Gaddam',
+      lookTitle: 'Editorial High-Fashion Artistry',
+      role: 'Academy Graduate',
+      content: 'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
+      rating: 5,
+      image: 'https://picsum.photos/seed/user3/100/100',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      videoThumbnail: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
+    }
+  ],
   blogPosts: [
     {
       id: 'b1',

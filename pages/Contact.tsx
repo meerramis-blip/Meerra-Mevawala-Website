@@ -21,7 +21,6 @@ const PinterestIcon = ({ size = 20 }: { size?: number }) => (
 const Contact: React.FC = () => {
   const { state, addInquiry } = useStore();
   const { settings } = state;
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,7 +31,12 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newInquiry = {
+    const cleanPhone = settings.whatsappNumber.replace(/\D/g, '');
+    const waMessage = `Hi Meerra,\n\nI have a ${formData.subject} inquiry.\n\n*From:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n\n*Message:*\n${formData.message}`;
+    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMessage)}`;
+    
+    // Save locally
+    addInquiry({
       id: Math.random().toString(36).substr(2, 9),
       name: formData.name,
       email: formData.email,
@@ -41,33 +45,10 @@ const Contact: React.FC = () => {
       message: formData.message,
       type: formData.subject as any,
       createdAt: new Date().toISOString()
-    };
-    addInquiry(newInquiry);
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    });
 
-  if (submitted) {
-    return (
-      <div className="min-h-[80vh] flex items-center justify-center p-4 bg-[#FDFCFB]">
-        <div className="max-w-md w-full text-center bg-white p-12 rounded-3xl shadow-2xl border border-gray-100">
-          <div className="w-20 h-20 bg-[#F5E6E8] rounded-full flex items-center justify-center mx-auto mb-8">
-            <Send className="text-[#D4AF37]" size={40} />
-          </div>
-          <h2 className="text-3xl font-serif font-bold mb-4">Message Sent</h2>
-          <p className="text-gray-600 mb-8 leading-relaxed">
-            Thank you for reaching out to Meerra Mevawala. We've received your inquiry and will get back to you within 24 hours.
-          </p>
-          <button
-            onClick={() => setSubmitted(false)}
-            className="bg-gray-900 text-white px-10 py-4 rounded-full font-bold text-xs tracking-widest hover:bg-[#D4AF37] transition-all"
-          >
-            SEND ANOTHER MESSAGE
-          </button>
-        </div>
-      </div>
-    );
-  }
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <div className="pt-24 bg-[#FDFCFB]">
@@ -121,7 +102,9 @@ const Contact: React.FC = () => {
               {settings.phone}
             </a>
             <a 
-              href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}`}
+              href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent("Hi Meerra, I'm reaching out with a question about your services.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#D4AF37] text-xs font-bold tracking-widest flex items-center hover:translate-x-2 transition-transform"
             >
               WHATSAPP US <MessageCircle size={14} className="ml-2" />
@@ -155,7 +138,7 @@ const Contact: React.FC = () => {
             <div className="lg:w-2/5">
               <h2 className="text-4xl font-serif font-bold text-gray-900 mb-8">Send us an Inquiry</h2>
               <p className="text-gray-600 mb-12 leading-relaxed">
-                Whether you're planning a wedding, interested in professional training, or have a question about our services, please fill out the form and our team will respond as soon as possible.
+                Whether you're planning a wedding, interested in professional training, or have a question about our services, please fill out the form and we will connect on WhatsApp.
               </p>
               
               <div className="space-y-10">
@@ -179,11 +162,6 @@ const Contact: React.FC = () => {
                     <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Youtube size={20} /></a>
                   </div>
                 </div>
-              </div>
-
-              {/* Decorative Quote */}
-              <div className="mt-16 pt-16 border-t border-gray-100 italic text-gray-400">
-                "Beauty is an experience, and every interaction with us is designed to be extraordinary."
               </div>
             </div>
 
@@ -263,29 +241,11 @@ const Contact: React.FC = () => {
                     type="submit"
                     className="w-full bg-gray-900 text-white py-6 rounded-2xl font-bold text-xs tracking-[0.2em] hover:bg-[#D4AF37] transition-all transform hover:-translate-y-1 shadow-xl shadow-gray-200 flex items-center justify-center gap-3"
                   >
-                    SEND YOUR MESSAGE <Send size={16} />
+                    SEND VIA WHATSAPP <Send size={16} />
                   </button>
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section Link */}
-      <section className="h-[400px] w-full relative group cursor-pointer" onClick={() => window.open(settings.googleMapsUrl, '_blank')}>
-        <div className="absolute inset-0 bg-gray-200 grayscale group-hover:grayscale-0 transition-all duration-700 overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2066&auto=format&fit=crop" 
-            alt="Studio Location Map Preview" 
-            className="w-full h-full object-cover opacity-50"
-          />
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-md px-10 py-6 rounded-3xl shadow-2xl text-center">
-            <h4 className="font-serif font-bold text-xl mb-2">Find Us in Ghatkopar East</h4>
-            <p className="text-gray-500 text-sm mb-4">Opp Siddhivinayak Mandir, Above IDFC Bank</p>
-            <span className="text-[#D4AF37] text-[10px] font-bold tracking-widest">VIEW ON GOOGLE MAPS</span>
           </div>
         </div>
       </section>

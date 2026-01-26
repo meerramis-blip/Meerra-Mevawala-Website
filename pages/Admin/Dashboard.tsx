@@ -18,10 +18,12 @@ import {
   X,
   Save,
   Image as ImageIcon,
-  CheckCircle2
+  CheckCircle2,
+  Sparkles,
+  User
 } from 'lucide-react';
 import Login from './Login';
-import { Service, Course } from '../../types';
+import { Service, Course, Testimonial } from '../../types';
 
 const Dashboard: React.FC = () => {
   const { 
@@ -34,11 +36,14 @@ const Dashboard: React.FC = () => {
     updateService,
     updateCourse,
     addService,
-    addCourse
+    addCourse,
+    addTestimonial,
+    updateTestimonial,
+    deleteTestimonial
   } = useStore();
   
-  const [activeTab, setActiveTab] = useState<'stats' | 'services' | 'courses' | 'bookings' | 'settings'>('stats');
-  const [editModal, setEditModal] = useState<{ type: 'service' | 'course', data: any, isNew?: boolean } | null>(null);
+  const [activeTab, setActiveTab] = useState<'stats' | 'services' | 'courses' | 'transformations' | 'bookings' | 'settings'>('stats');
+  const [editModal, setEditModal] = useState<{ type: 'service' | 'course' | 'transformation', data: any, isNew?: boolean } | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
@@ -58,11 +63,13 @@ const Dashboard: React.FC = () => {
       const newId = Math.random().toString(36).substr(2, 9);
       const dataWithId = { ...editModal.data, id: newId };
       if (editModal.type === 'service') addService(dataWithId);
-      else addCourse(dataWithId);
+      else if (editModal.type === 'course') addCourse(dataWithId);
+      else if (editModal.type === 'transformation') addTestimonial(dataWithId);
       setToast('Created successfully!');
     } else {
       if (editModal.type === 'service') updateService(editModal.data.id, editModal.data);
-      else updateCourse(editModal.data.id, editModal.data);
+      else if (editModal.type === 'course') updateCourse(editModal.data.id, editModal.data);
+      else if (editModal.type === 'transformation') updateTestimonial(editModal.data.id, editModal.data);
       setToast('Changes saved successfully!');
     }
     setEditModal(null);
@@ -84,7 +91,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] flex font-sans relative">
-      {/* Toast Notification */}
       {toast && (
         <div className="fixed bottom-10 right-10 z-[200] animate-in slide-in-from-bottom-10 fade-in duration-500">
           <div className="bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10">
@@ -94,17 +100,17 @@ const Dashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Sidebar */}
       <aside className="w-72 bg-white border-r border-gray-100 flex flex-col sticky top-0 h-screen shadow-sm z-10">
         <div className="p-10 border-b border-gray-50">
           <img src="logo.png" alt="Logo" className="h-12 w-auto mb-4 brightness-0" onError={(e) => (e.target as any).style.display='none'} />
           <h2 className="text-xl font-serif font-bold text-gray-900">Studio Manager</h2>
           <p className="text-[10px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] mt-1">Meerra Mevawala</p>
         </div>
-        <nav className="flex-grow py-8">
+        <nav className="flex-grow py-8 overflow-y-auto no-scrollbar">
           <TabButton id="stats" icon={LayoutDashboard} label="Overview" />
           <TabButton id="services" icon={Scissors} label="Services" />
           <TabButton id="courses" icon={BookOpen} label="Academy" />
+          <TabButton id="transformations" icon={Sparkles} label="Transformations" />
           <TabButton id="bookings" icon={CalendarCheck} label="Bookings" />
           <TabButton id="settings" icon={Settings} label="Settings" />
         </nav>
@@ -119,7 +125,6 @@ const Dashboard: React.FC = () => {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-grow p-12 overflow-y-auto">
         {activeTab === 'stats' && (
           <div className="space-y-10">
@@ -133,12 +138,12 @@ const Dashboard: React.FC = () => {
                 { label: 'Total Bookings', value: state.bookings.length, icon: CalendarCheck, color: 'text-blue-500' },
                 { label: 'Makeup Services', value: state.services.length, icon: Scissors, color: 'text-pink-500' },
                 { label: 'Active Courses', value: state.courses.length, icon: BookOpen, color: 'text-amber-500' },
-                { label: 'Unread Inquiries', value: state.inquiries.length, icon: LayoutDashboard, color: 'text-indigo-500' },
+                { label: 'Transformations', value: state.testimonials.length, icon: Sparkles, color: 'text-indigo-500' },
               ].map((stat, i) => (
                 <div key={i} className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-50 group hover:shadow-xl transition-all">
                   <div className="flex items-center justify-between mb-4">
                     <stat.icon size={24} className={stat.color} />
-                    <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Growth +0%</span>
+                    <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Live</span>
                   </div>
                   <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
                   <p className="text-4xl font-serif font-bold text-gray-900">{stat.value}</p>
@@ -184,11 +189,6 @@ const Dashboard: React.FC = () => {
                         </td>
                       </tr>
                     ))}
-                    {state.bookings.length === 0 && (
-                      <tr>
-                        <td colSpan={5} className="py-10 text-center text-gray-400 italic">No bookings found.</td>
-                      </tr>
-                    )}
                   </tbody>
                 </table>
               </div>
@@ -213,8 +213,7 @@ const Dashboard: React.FC = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
               {state.services.map((service) => (
-                // Fix: Changed conditional logic to ternary to avoid passing boolean 'false' to className prop
-                <div key={service.id} className={`bg-white rounded-3xl border border-gray-100 overflow-hidden group hover:shadow-xl transition-all ${state.isAdmin ? "border-gray-200" : ""}`}>
+                <div key={service.id} className="bg-white rounded-3xl border border-gray-100 overflow-hidden group hover:shadow-xl transition-all">
                   <div className="aspect-video relative overflow-hidden">
                     <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     <div className="absolute top-4 right-4 flex gap-2">
@@ -271,6 +270,41 @@ const Dashboard: React.FC = () => {
                       <span className="text-[#D4AF37] font-bold">{course.price}</span>
                       <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{course.duration}</span>
                     </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'transformations' && (
+          <div className="space-y-10">
+            <header className="flex justify-between items-center">
+              <div>
+                <h1 className="text-4xl font-serif font-bold text-gray-900">Bridal Transformations</h1>
+                <p className="text-gray-500 mt-2">Update look descriptions and gallery images.</p>
+              </div>
+              <button 
+                onClick={() => setEditModal({ type: 'transformation', data: { lookTitle: '', role: 'Bride', content: '', rating: 5, image: '', name: '' }, isNew: true })}
+                className="bg-gray-900 text-white px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-[#D4AF37] transition-all font-bold text-[10px] tracking-widest uppercase"
+              >
+                <Plus size={18} /> Add Transformation
+              </button>
+            </header>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {state.testimonials.map((t) => (
+                <div key={t.id} className="bg-white rounded-3xl border border-gray-100 overflow-hidden group hover:shadow-xl transition-all">
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <img src={t.videoThumbnail || t.image} alt={t.lookTitle} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                    <div className="absolute top-4 right-4 flex gap-2">
+                      <button onClick={() => setEditModal({ type: 'transformation', data: t })} className="p-2 bg-white/90 backdrop-blur rounded-lg shadow-sm text-gray-600 hover:text-[#D4AF37] transition-colors"><Edit2 size={16} /></button>
+                      <button onClick={() => { deleteTestimonial(t.id); setToast('Transformation deleted.'); }} className="p-2 bg-white/90 backdrop-blur rounded-lg shadow-sm text-red-400 hover:text-red-600 transition-colors"><Trash2 size={16} /></button>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif font-bold text-lg mb-1">{t.lookTitle || 'No Title'}</h3>
+                    <p className="text-[10px] font-bold text-[#D4AF37] uppercase tracking-widest">{t.role}</p>
                   </div>
                 </div>
               ))}
@@ -363,70 +397,58 @@ const Dashboard: React.FC = () => {
         )}
       </main>
 
-      {/* Edit Modal (Service/Course) */}
       {editModal && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center p-6 bg-gray-900/60 backdrop-blur-sm animate-in fade-in duration-300">
           <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
             <div className="px-10 py-8 bg-[#FDFCFB] border-b border-gray-50 flex justify-between items-center">
               <div>
-                <h3 className="text-2xl font-serif font-bold text-gray-900">{editModal.isNew ? 'Add New' : 'Edit'} {editModal.type === 'service' ? 'Service' : 'Course'}</h3>
+                <h3 className="text-2xl font-serif font-bold text-gray-900">{editModal.isNew ? 'Add New' : 'Edit'} {editModal.type.charAt(0).toUpperCase() + editModal.type.slice(1)}</h3>
                 <p className="text-[10px] font-bold text-[#D4AF37] uppercase tracking-widest mt-1">Management Console</p>
               </div>
               <button onClick={() => setEditModal(null)} className="p-2 hover:bg-gray-100 rounded-full transition-colors"><X size={24} /></button>
             </div>
             <form onSubmit={handleSave} className="p-10 space-y-6 max-h-[70vh] overflow-y-auto no-scrollbar">
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Title</label>
-                    <input required type="text" value={editModal.data.title} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, title: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Price</label>
-                    <input required type="text" value={editModal.data.price} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, price: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Image URL</label>
-                  <div className="flex gap-4">
-                    <input required type="text" value={editModal.data.image} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, image: e.target.value } })} className="flex-grow px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
-                    <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 border border-gray-100 overflow-hidden">
-                      {editModal.data.image ? <img src={editModal.data.image} className="w-full h-full object-cover" /> : <ImageIcon size={20} className="text-gray-300" />}
+                {editModal.type === 'transformation' ? (
+                  <>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Look Created (Title)</label>
+                      <input required type="text" placeholder="e.g. Royal Traditional Bridal Glow" value={editModal.data.lookTitle} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, lookTitle: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
                     </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Duration</label>
-                    <input required type="text" value={editModal.data.duration} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, duration: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Category</label>
-                    <select value={editModal.data.category} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, category: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37] appearance-none">
-                      {editModal.type === 'service' ? (
-                        <>
-                          <option value="Bridal">Bridal</option>
-                          <option value="Party">Party</option>
-                          <option value="Special">Special</option>
-                        </>
-                      ) : (
-                        <>
-                          <option value="Professional">Professional</option>
-                          <option value="Makeup">Makeup</option>
-                          <option value="Hair">Hair</option>
-                          <option value="Nail">Nail</option>
-                        </>
-                      )}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Description</label>
-                  <textarea rows={3} value={editModal.data.description} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, description: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37] resize-none" />
-                </div>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Category / Role</label>
+                        <select value={editModal.data.role} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, role: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37] appearance-none">
+                          <option value="Bride">BRIDE</option>
+                          <option value="Sangeet">SANGEET</option>
+                          <option value="Reception">RECEPTION</option>
+                          <option value="Graduate">GRADUATE</option>
+                        </select>
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Image URL</label>
+                        <input required type="text" value={editModal.data.image} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, image: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Title</label>
+                        <input required type="text" value={editModal.data.title} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, title: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Price</label>
+                        <input required type="text" value={editModal.data.price} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, price: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Image URL</label>
+                      <input required type="text" value={editModal.data.image} onChange={(e) => setEditModal({ ...editModal, data: { ...editModal.data, image: e.target.value } })} className="w-full px-4 py-3 bg-gray-50 rounded-xl outline-none focus:ring-1 focus:ring-[#D4AF37]" />
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="pt-6 border-t border-gray-50 flex gap-4">

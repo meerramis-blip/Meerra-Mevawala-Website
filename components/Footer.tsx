@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, Twitter, Linkedin, MessageCircle, Lock } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 import { useStore } from '../store';
 
 const PinterestIcon = ({ size = 18 }: { size?: number }) => (
@@ -26,8 +25,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* Brand Info */}
+          <div className="col-span-1">
             <div className="mb-8">
               <img 
                 src="logo.png" 
@@ -41,17 +41,19 @@ const Footer: React.FC = () => {
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Expert Makeup Artistry & CIDESCO Certified Media Makeup Artist & Cosmetologist. Creating timeless beauty and professional masters in Mumbai.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Instagram size={18} /></a>
-              <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Facebook size={18} /></a>
-              <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Youtube size={18} /></a>
-              <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Twitter size={18} /></a>
-              <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><Linkedin size={18} /></a>
-              <a href={settings.pinterestUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><PinterestIcon size={18} /></a>
-              <a href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all"><MessageCircle size={18} /></a>
+            {/* Social Icons - Set in one line */}
+            <div className="flex items-center gap-3 md:gap-4">
+              <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="Facebook"><Facebook size={18} /></a>
+              <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="YouTube"><Youtube size={18} /></a>
+              <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="Twitter"><Twitter size={18} /></a>
+              <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="LinkedIn"><Linkedin size={18} /></a>
+              <a href={settings.pinterestUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="Pinterest"><PinterestIcon size={18} /></a>
+              <a href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#D4AF37] hover:text-white transition-all" aria-label="WhatsApp"><MessageCircle size={18} /></a>
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h4 className="text-sm font-bold tracking-widest uppercase mb-8 text-[#D4AF37]">Quick Links</h4>
             <ul className="space-y-4 text-sm text-gray-400">
@@ -59,10 +61,11 @@ const Footer: React.FC = () => {
               <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Makeup Services</Link></li>
               <li><Link to="/academy" className="hover:text-white transition-colors">Academy</Link></li>
-              <li><Link to="/booking" className="hover:text-white transition-colors">Book Now</Link></li>
+              <li><a href={`https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent("Hi, I'd like to book an appointment.")}`} className="hover:text-white transition-colors">Book Now</a></li>
             </ul>
           </div>
 
+          {/* Contact Details */}
           <div>
             <h4 className="text-sm font-bold tracking-widest uppercase mb-8 text-[#D4AF37]">Contact Us</h4>
             <ul className="space-y-6 text-sm text-gray-400">
@@ -80,30 +83,19 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="text-sm font-bold tracking-widest uppercase mb-8 text-[#D4AF37]">Stay Updated</h4>
-            <p className="text-gray-400 text-sm mb-6">Subscribe for exclusive beauty tips and Academy session updates.</p>
-            <form className="flex">
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="bg-gray-800 border-none px-4 py-3 w-full focus:ring-1 focus:ring-[#D4AF37] text-sm rounded-l-xl"
-              />
-              <button className="bg-[#D4AF37] px-6 py-3 hover:bg-[#B89830] transition-colors rounded-r-xl font-bold text-xs uppercase tracking-widest">Join</button>
-            </form>
-          </div>
         </div>
 
+        {/* Footer Bottom */}
         <div className="border-t border-gray-800 pt-8 text-center text-[10px] text-gray-500 font-medium tracking-[0.2em] uppercase">
-          <p className="mb-6">© {new Date().getFullYear()} {settings.brandName}. All Rights Reserved.</p>
+          <p className="mb-2">© {new Date().getFullYear()} {settings.brandName}. All Rights Reserved.</p>
+          {/* Developer Credit */}
+          <p className="mb-6">
+            Developed by : <a href="https://www.mehulmevawalla.com" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline transition-colors">Mehul Mevawalla</a>
+          </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
             <Link to="/cookie-policy" className="hover:text-white transition-colors">Cookie Policy</Link>
-            <Link to="/admin" className="hover:text-white transition-colors flex items-center gap-1 opacity-50 hover:opacity-100">
-              <Lock size={10} /> Admin Login
-            </Link>
           </div>
         </div>
       </div>

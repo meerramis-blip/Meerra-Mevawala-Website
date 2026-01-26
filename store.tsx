@@ -5,14 +5,17 @@ import { INITIAL_STATE } from './constants';
 
 interface StoreContextType {
   state: AppState;
-  updateSettings: (settings: Partial<SiteSettings>) => void;
   setAdmin: (isAdmin: boolean) => void;
+  updateSettings: (settings: Partial<SiteSettings>) => void;
   addService: (service: Service) => void;
   updateService: (id: string, service: Partial<Service>) => void;
   deleteService: (id: string) => void;
   addCourse: (course: Course) => void;
   updateCourse: (id: string, course: Partial<Course>) => void;
   deleteCourse: (id: string) => void;
+  addTestimonial: (testimonial: Testimonial) => void;
+  updateTestimonial: (id: string, testimonial: Partial<Testimonial>) => void;
+  deleteTestimonial: (id: string) => void;
   addBooking: (booking: Booking) => void;
   addInquiry: (inquiry: Inquiry) => void;
   updateBookingStatus: (id: string, status: Booking['status']) => void;
@@ -29,8 +32,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       const saved = localStorage.getItem('meerra_state');
       if (saved && saved !== 'undefined' && saved !== 'null') {
         const parsed = JSON.parse(saved);
-        // Ensure we merge with INITIAL_STATE to get any new default values/keys
-        return { ...INITIAL_STATE, ...parsed, isAdmin: INITIAL_STATE.isAdmin };
+        return { ...INITIAL_STATE, ...parsed };
       }
     } catch (error) {
       console.error('Failed to load state from localStorage:', error);
@@ -38,14 +40,12 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return INITIAL_STATE;
   });
 
-  // Sync state across tabs
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'meerra_state' && e.newValue) {
         setState(prev => ({
           ...prev,
-          ...JSON.parse(e.newValue!),
-          isAdmin: prev.isAdmin // Keep admin state local to session
+          ...JSON.parse(e.newValue!)
         }));
       }
     };
@@ -53,7 +53,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  // Persist state to localStorage
   useEffect(() => {
     try {
       localStorage.setItem('meerra_state', JSON.stringify(state));
@@ -62,12 +61,12 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }, [state]);
 
-  const updateSettings = (settings: Partial<SiteSettings>) => {
-    setState(prev => ({ ...prev, settings: { ...prev.settings, ...settings } }));
-  };
-
   const setAdmin = (isAdmin: boolean) => {
     setState(prev => ({ ...prev, isAdmin }));
+  };
+
+  const updateSettings = (settings: Partial<SiteSettings>) => {
+    setState(prev => ({ ...prev, settings: { ...prev.settings, ...settings } }));
   };
 
   const addService = (service: Service) => {
@@ -98,6 +97,21 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const deleteCourse = (id: string) => {
     setState(prev => ({ ...prev, courses: prev.courses.filter(c => c.id !== id) }));
+  };
+
+  const addTestimonial = (testimonial: Testimonial) => {
+    setState(prev => ({ ...prev, testimonials: [testimonial, ...prev.testimonials] }));
+  };
+
+  const updateTestimonial = (id: string, testimonial: Partial<Testimonial>) => {
+    setState(prev => ({
+      ...prev,
+      testimonials: prev.testimonials.map(t => t.id === id ? { ...t, ...testimonial } : t)
+    }));
+  };
+
+  const deleteTestimonial = (id: string) => {
+    setState(prev => ({ ...prev, testimonials: prev.testimonials.filter(t => t.id !== id) }));
   };
 
   const addBooking = (booking: Booking) => {
@@ -132,9 +146,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   return (
     <StoreContext.Provider value={{
-      state, updateSettings, setAdmin, addService, updateService, deleteService,
-      addCourse, updateCourse, deleteCourse, addBooking, addInquiry,
-      updateBookingStatus, addBlogPost, updateBlogPost, deleteBlogPost
+      state, setAdmin, updateSettings, addService, updateService, deleteService,
+      addCourse, updateCourse, deleteCourse, addTestimonial, updateTestimonial, deleteTestimonial,
+      addBooking, addInquiry, updateBookingStatus, addBlogPost, updateBlogPost, deleteBlogPost
     }}>
       {children}
     </StoreContext.Provider>

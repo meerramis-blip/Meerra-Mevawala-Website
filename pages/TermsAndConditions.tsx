@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ShieldCheck, AlertCircle, Scale, GraduationCap, ClipboardCheck, BookOpen } from 'lucide-react';
 
@@ -8,7 +7,7 @@ const TermsAndConditions: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Terms & Conditions</h1>
-          <p className="text-[#D4AF37] font-bold tracking-widest text-xs uppercase">Meerra’s International School of Makeup & More (MIS)</p>
+          <p className="text-[#D4AF37] font-bold tracking-widest text-xs uppercase">Meerras International School of Makeup and More (MIS)</p>
           <div className="w-20 h-px bg-gray-200 mx-auto mt-8"></div>
         </div>
 

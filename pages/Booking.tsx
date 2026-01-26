@@ -1,13 +1,11 @@
 
 import React, { useState } from 'react';
 import { useStore } from '../store';
-// Added CheckCircle2 to the imports
 import { Calendar, Clock, User, Phone, Mail, Sparkles, CreditCard, ChevronRight, CheckCircle2 } from 'lucide-react';
 import PaymentDetails from '../components/PaymentDetails';
 
 const Booking: React.FC = () => {
   const { state, addBooking } = useStore();
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,7 +17,14 @@ const Booking: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newBooking = {
+    const serviceName = state.services.find(s => s.id === formData.serviceId)?.title || 'Selected Service';
+    const message = `Hi Meerra,\n\nI would like to request a booking from your website.\n\n*Details:*\n- *Name:* ${formData.name}\n- *Service:* ${serviceName}\n- *Date:* ${formData.date}\n- *Time:* ${formData.time}\n- *Phone:* ${formData.phone}\n- *Email:* ${formData.email}\n\nPlease let me know if this slot is available!`;
+    
+    const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
+    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+    
+    // Also save to store for history
+    addBooking({
       id: Math.random().toString(36).substr(2, 9),
       customerName: formData.name,
       email: formData.email,
@@ -27,53 +32,12 @@ const Booking: React.FC = () => {
       serviceId: formData.serviceId,
       date: formData.date,
       time: formData.time,
-      status: 'Pending' as const,
+      status: 'Pending',
       createdAt: new Date().toISOString()
-    };
-    addBooking(newBooking);
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.open(whatsappUrl, '_blank');
   };
-
-  if (submitted) {
-    return (
-      <div className="pt-32 pb-24 bg-[#FDFCFB]">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="w-20 h-20 bg-[#F5E6E8] rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
-              <Sparkles className="text-[#D4AF37]" size={40} />
-            </div>
-            <h2 className="text-4xl font-serif font-bold mb-4">Request Received!</h2>
-            <p className="text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto">
-              Thank you for choosing Meerra Mevawala. To finalize your slot, please pay the 30% advance deposit using the details below.
-            </p>
-          </div>
-
-          <PaymentDetails />
-
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button
-              onClick={() => setSubmitted(false)}
-              className="text-gray-400 font-bold text-[10px] tracking-widest hover:text-gray-900 transition-colors"
-            >
-              BACK TO BOOKING
-            </button>
-            <div className="flex items-center gap-2 text-gray-400">
-              <div className="w-8 h-px bg-gray-200"></div>
-              <span className="text-[10px] font-bold uppercase tracking-widest">Or</span>
-              <div className="w-8 h-px bg-gray-200"></div>
-            </div>
-            <a 
-              href={`https://wa.me/${state.settings.whatsappNumber.replace(/\D/g, '')}`}
-              className="bg-gray-900 text-white px-10 py-4 rounded-xl font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all"
-            >
-              SHARE PAYMENT SCREENSHOT
-            </a>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="pt-20 pb-24 bg-[#FDFCFB]">
@@ -82,7 +46,7 @@ const Booking: React.FC = () => {
           <div>
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-8">Reserve Your Session</h1>
             <p className="text-gray-600 mb-10 text-lg leading-relaxed">
-              Experience the luxury of professional artistry. Please fill out the form, and we'll handle the rest.
+              Experience the luxury of professional artistry. Please fill out the form, and we'll handle the rest via WhatsApp.
             </p>
             
             <div className="space-y-8 mb-12">
@@ -101,14 +65,14 @@ const Booking: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900 mb-1">Easy Payments</h4>
-                  <p className="text-sm text-gray-500">Pay securely via Bank Transfer, Google Pay, or Razorpay after form submission.</p>
+                  <p className="text-sm text-gray-500">Pay securely via Bank Transfer or GPay after confirming details with us on WhatsApp.</p>
                 </div>
               </div>
             </div>
 
             <div className="p-8 bg-gray-900 rounded-[2rem] text-white">
               <h4 className="text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-4">Advance Policy</h4>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">A 30% non-refundable advance is required to secure your date. Slot will be released if payment isn't received within 24 hours of request.</p>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">A 30% non-refundable advance is required to secure your date. Slot will be released if payment isn't received within 24 hours of confirmation.</p>
               <div className="flex items-center gap-4 text-xs font-bold">
                 <CheckCircle2 className="text-[#D4AF37]" size={16} /> Secure Booking
                 <CheckCircle2 className="text-[#D4AF37]" size={16} /> GST Invoicing
@@ -212,7 +176,7 @@ const Booking: React.FC = () => {
                 type="submit"
                 className="w-full bg-[#D4AF37] text-white py-4 rounded-xl font-bold text-xs tracking-widest hover:bg-gray-900 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 shadow-xl shadow-[#D4AF37]/20"
               >
-                REQUEST BOOKING & PAY DEPOSIT <ChevronRight size={16} />
+                REQUEST VIA WHATSAPP <ChevronRight size={16} />
               </button>
             </form>
           </div>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, GraduationCap, Trophy, Award, ExternalLink, ArrowRight, Heart, Camera, Star, Crown } from 'lucide-react';
+import { useStore } from '../store';
 
 type Category = 'Professional' | 'Brides' | 'Students' | 'Awards';
 
@@ -15,14 +16,16 @@ interface PortfolioItem {
 }
 
 const Portfolio: React.FC = () => {
+  const { state } = useStore();
   const [activeTab, setActiveTab] = useState<Category>('Professional');
+  const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
 
   const portfolioItems: PortfolioItem[] = [
     // PROFESSIONAL WORK
-    { id: 'p1', category: 'Professional', title: 'Miss Earth 2021', subtitle: 'Editorial Makeup for PNI Magazine', image: 'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=1964&auto=format&fit=crop', size: 'large' },
-    { id: 'p2', category: 'Professional', title: 'Lakme Fashion Week', subtitle: 'Backstage High-Fashion Artistry', image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop' },
+    { id: 'p1', category: 'Professional', title: 'Miss Earth 2021', subtitle: 'Editorial Makeup for PNI Magazine', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b067c82b00b.jfif', size: 'large' },
+    { id: 'p2', category: 'Professional', title: 'Lakme Fashion Week', subtitle: 'Backstage High-Fashion Artistry', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/6975d397eb392b4b7242cac3.jpeg' },
     { id: 'p3', category: 'Professional', title: 'Miss Eco International', subtitle: 'Stars Cosmetics Core Team', image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop', size: 'tall' },
-    { id: 'p4', category: 'Professional', title: 'Bharat Icon Awards', subtitle: 'Celebrity Styling', image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1935&auto=format&fit=crop' },
+    { id: 'p4', category: 'Professional', title: 'Bharat Icon Awards', subtitle: 'Celebrity Styling', image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697209e5eb392b107082b00a.jfif' },
     
     // BRIDES
     { id: 'b1', category: 'Brides', title: 'The Royal Wedding', subtitle: 'Traditional Red Bridal Glory', image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop', size: 'large' },
@@ -132,12 +135,17 @@ const Portfolio: React.FC = () => {
         <div className="mt-24 text-center">
           {activeTab === 'Brides' && (
             <div className="bg-[#F5E6E8] p-16 rounded-[3rem] shadow-xl relative overflow-hidden max-w-4xl mx-auto">
-              <Crown className="text-[#D4AF37] mx-auto mb-6" size={48} />
+              <Heart className="text-[#D4AF37] mx-auto mb-6" size={48} />
               <h2 className="text-3xl font-serif font-bold mb-6">Become a Meerra Mevawala Bride</h2>
               <p className="text-gray-600 mb-10 max-w-xl mx-auto">Every bride has a story. Let us help you tell yours through the art of luxury makeup and traditional draping.</p>
-              <Link to="/booking" className="bg-gray-900 text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all shadow-xl shadow-gray-200">
+              <a
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi Meerra, I absolutely love your bridal portfolio! I'd like to book a consultation for my upcoming wedding.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-900 text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all shadow-xl shadow-gray-200"
+              >
                 BOOK YOUR CONSULTATION
-              </Link>
+              </a>
             </div>
           )}
 
@@ -146,79 +154,16 @@ const Portfolio: React.FC = () => {
               <GraduationCap className="text-[#D4AF37] mx-auto mb-6" size={48} />
               <h2 className="text-3xl font-serif font-bold mb-6">Create Your Own Portfolio</h2>
               <p className="text-gray-400 mb-10 max-w-xl mx-auto">Join the next batch at MIS and learn to create professional looks that command attention in the international beauty industry.</p>
-              <Link to="/academy" className="bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-white hover:text-black transition-all shadow-xl shadow-[#D4AF37]/20">
+              <a
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi, I saw the student work portfolio and I'm very impressed. I want to learn these professional skills at MIS Academy!")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-white hover:text-black transition-all shadow-xl shadow-[#D4AF37]/20"
+              >
                 EXPLORE COURSES
-              </Link>
+              </a>
             </div>
           )}
-
-          {activeTab === 'Awards' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-              {[
-                { title: 'Best Woman Entrepreneur', year: '2022', icon: Trophy },
-                { title: 'CIDESCO Switzerland', year: 'Expert', icon: Award },
-                { title: 'ISO 9001:2015', year: 'Certified', icon: Star },
-                { title: '15+ Jury Roles', year: 'Global', icon: Crown },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center group hover:border-[#D4AF37] transition-all">
-                  <div className="w-16 h-16 bg-[#FDFCFB] rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#D4AF37] group-hover:text-white transition-all text-[#D4AF37]">
-                    <item.icon size={32} strokeWidth={1.5} />
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-1 uppercase tracking-tighter">{item.title}</h4>
-                  <p className="text-[10px] font-bold text-[#D4AF37] tracking-[0.2em]">{item.year}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Instagram Feed Style CTA */}
-      <section className="py-24 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-serif font-bold mb-8 flex items-center justify-center gap-4">
-            <span className="w-12 h-px bg-gray-200"></span>
-            FOLLOW THE JOURNEY @MEERRAMEVAWALA
-            <span className="w-12 h-px bg-gray-200"></span>
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a 
-              href="https://instagram.com/meerramevawala" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden w-24 h-24 sm:w-40 sm:h-40 rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all z-10"></div>
-              <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=200&h=200&auto=format&fit=crop" className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Insta" />
-            </a>
-            <a 
-              href="https://instagram.com/meerramevawala" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden w-24 h-24 sm:w-40 sm:h-40 rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all z-10"></div>
-              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=200&h=200&auto=format&fit=crop" className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Insta" />
-            </a>
-            <a 
-              href="https://instagram.com/meerramevawala" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden w-24 h-24 sm:w-40 sm:h-40 rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all z-10"></div>
-              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=200&h=200&auto=format&fit=crop" className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Insta" />
-            </a>
-            <a 
-              href="https://instagram.com/meerramevawala" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hidden lg:block group relative overflow-hidden w-40 h-40 rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all z-10"></div>
-              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=200&h=200&auto=format&fit=crop" className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Insta" />
-            </a>
-          </div>
         </div>
       </section>
     </div>

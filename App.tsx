@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { StoreProvider } from './store';
@@ -6,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 import EditorGuide from './components/EditorGuide';
+import ScrollToTopButton from './components/ScrollToTopButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -17,10 +17,9 @@ import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import CookiePolicy from './pages/CookiePolicy';
-import Dashboard from './pages/Admin/Dashboard';
 
-// Simple Scroll to Top component
-const ScrollToTop = () => {
+// Simple Scroll to Top component for route changes
+const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,6 +35,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Footer />
       <CookieConsent />
       <EditorGuide />
+      <ScrollToTopButton />
     </div>
   );
 };
@@ -44,11 +44,8 @@ const App: React.FC = () => {
   return (
     <StoreProvider>
       <Router>
-        <ScrollToTop />
+        <ScrollToTopOnNavigate />
         <Routes>
-          {/* Admin Route - Rendered without main Layout */}
-          <Route path="/admin" element={<Dashboard />} />
-
           {/* Main Site Routes - Wrapped in Layout */}
           <Route
             path="/*"

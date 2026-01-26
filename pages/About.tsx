@@ -44,15 +44,15 @@ const About: React.FC = () => {
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <div className="w-full max-w-sm lg:w-1/2 relative mx-auto lg:mx-0">
-              <div className="relative z-10 aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+            <div className="w-full max-w-lg lg:w-1/2 relative mx-auto lg:mx-0">
+              <div className="relative z-10 aspect-square rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
                 <img 
-                  src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697729bbc1fa0cf7bdb46dd4.jpeg?q=80&w=2087&auto=format&fit=crop" 
-                  alt="Meerra Mevawala" 
+                  src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697729bbc1fa0cf7bdb46dd4.jpeg" 
+                  alt="Meerra Mevawala - Luxury Makeup Studio" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-6 left-6 w-full h-full border-2 border-[#D4AF37] rounded-2xl z-0"></div>
+              <div className="absolute top-6 left-6 w-full h-full border-2 border-[#D4AF37] rounded-3xl z-0"></div>
             </div>
 
             <div className="w-full lg:w-1/2 mt-12 lg:mt-0 text-center lg:text-left">

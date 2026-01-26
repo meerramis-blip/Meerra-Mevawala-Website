@@ -24,6 +24,7 @@ export interface Course {
 export interface Testimonial {
   id: string;
   name: string;
+  lookTitle?: string;
   role: string;
   content: string;
   rating: number;

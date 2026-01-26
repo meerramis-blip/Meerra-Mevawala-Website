@@ -20,6 +20,7 @@ const Navbar: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  const whatsappUrl = `https://wa.me/${state.settings.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent("Hi Meerra, I'm interested in booking a session. Could you please share more details?")}`;
 
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
@@ -54,12 +55,14 @@ const Navbar: React.FC = () => {
                 {link.name.toUpperCase()}
               </Link>
             ))}
-            <Link
-              to="/booking"
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#D4AF37] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.15em] hover:bg-gray-900 transition-all shadow-lg shadow-[#D4AF37]/20"
             >
               BOOK NOW
-            </Link>
+            </a>
           </div>
 
           <div className="md:hidden flex items-center">
@@ -89,13 +92,15 @@ const Navbar: React.FC = () => {
                 {link.name.toUpperCase()}
               </Link>
             ))}
-            <Link
-              to="/booking"
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               className="block w-full text-center mt-8 bg-[#D4AF37] text-white px-6 py-4 rounded-xl font-bold tracking-widest text-xs"
             >
               BOOK APPOINTMENT
-            </Link>
+            </a>
           </div>
         </div>
       )}

@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { useStore } from '../store';
 import { Link } from 'react-router-dom';
-// Added ChevronRight to the imports
-import { Clock, Tag, ShieldCheck, AlertCircle, Star, Play, X, Quote, CheckCircle2, Award, ExternalLink, ChevronDown, ChevronUp, HelpCircle, Landmark, ChevronRight } from 'lucide-react';
+import { Clock, Tag, ShieldCheck, AlertCircle, Star, Play, X, Quote, CheckCircle2, Award, ExternalLink, ChevronDown, ChevronUp, HelpCircle, Landmark, ChevronRight, ArrowRight } from 'lucide-react';
 
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +32,7 @@ const Services: React.FC = () => {
     ? state.services 
     : state.services.filter(s => s.category === activeCategory);
 
-  const videoTestimonials = state.testimonials.filter(t => t.videoUrl);
+  const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
 
   const faqs = [
     {
@@ -72,7 +71,7 @@ const Services: React.FC = () => {
 
   return (
     <div className="pt-20 pb-24 bg-[#FDFCFB]">
-      {/* Video Modal */}
+      {/* Video Modal (Kept for other potential video triggers if needed) */}
       {activeVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm animate-in fade-in duration-300">
           <button 
@@ -141,43 +140,56 @@ const Services: React.FC = () => {
                     <span className="flex items-center gap-2"><Clock size={14} className="text-[#D4AF37]" /> {service.duration}</span>
                     <span className="flex items-center gap-2"><Tag size={14} className="text-[#D4AF37]" /> {service.category}</span>
                   </div>
-                  <Link
-                    to="/booking"
+                  <a
+                    href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi Meerra, I'd like to book the "${service.title}" package. Please let me know the process.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full bg-gray-900 text-white text-center py-4 rounded-2xl font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all transform hover:-translate-y-1"
                   >
                     BOOK THIS SERVICE
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Video Testimonials Mini Section */}
+        {/* Gallery Preview Section */}
         <div className="mb-24">
           <div className="text-center mb-12">
             <h2 className="text-xs font-bold tracking-[0.4em] text-[#D4AF37] uppercase mb-4">Witness the Magic</h2>
             <p className="text-3xl font-serif font-bold">Bridal Transformations</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {videoTestimonials.slice(0, 3).map((t) => (
-              <div 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {state.testimonials.slice(0, 3).map((t) => (
+              <Link 
                 key={t.id} 
-                className="relative group cursor-pointer overflow-hidden rounded-3xl aspect-video bg-gray-100"
-                onClick={() => setActiveVideo(t.videoUrl!)}
+                to="/portfolio"
+                className="relative group cursor-pointer overflow-hidden rounded-[2rem] aspect-[4/5] bg-gray-100 shadow-sm border border-gray-100"
               >
-                <img src={t.videoThumbnail || t.image} alt={t.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-[#D4AF37] transition-all">
-                    <Play size={24} fill="currentColor" />
+                <img 
+                  src={t.videoThumbnail || t.image} 
+                  alt={t.lookTitle || t.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-white">
+                  <p className="text-lg font-serif font-bold mb-1">{t.lookTitle || 'Signature Look'}</p>
+                  <p className="text-[10px] opacity-70 tracking-widest uppercase font-bold">{t.role}</p>
+                  <div className="mt-4 flex items-center gap-2 text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    View in Portfolio <ArrowRight size={12} />
                   </div>
                 </div>
-                <div className="absolute bottom-4 left-6 text-white">
-                  <p className="text-sm font-bold">{t.name}</p>
-                  <p className="text-[10px] opacity-70 tracking-widest uppercase">{t.role}</p>
-                </div>
-              </div>
+              </Link>
             ))}
+          </div>
+          <div className="text-center">
+            <Link 
+              to="/portfolio" 
+              className="inline-flex items-center gap-3 text-gray-900 font-bold text-[10px] tracking-[0.4em] uppercase hover:text-[#D4AF37] transition-colors border-b-2 border-transparent hover:border-[#D4AF37] pb-2"
+            >
+              VIEW FULL PORTFOLIO <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
 
@@ -256,9 +268,14 @@ const Services: React.FC = () => {
             </div>
             <div className="mt-8 pt-6 border-t border-gray-50 flex items-center justify-between">
               <p className="text-gray-500 text-xs">Payment is accepted via Bank Transfer, GPay, or Razorpay.</p>
-              <Link to="/booking" className="text-[#D4AF37] font-bold text-[10px] tracking-widest flex items-center gap-2">
+              <a 
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi Meerra, I've read your terms and would like to proceed with a booking.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] font-bold text-[10px] tracking-widest flex items-center gap-2"
+              >
                 PROCEED TO BOOKING <ChevronRight size={14} />
-              </Link>
+              </a>
             </div>
           </div>
         </section>

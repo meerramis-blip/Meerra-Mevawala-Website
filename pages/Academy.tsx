@@ -55,32 +55,7 @@ const Academy: React.FC = () => {
     ? state.courses 
     : state.courses.filter(c => c.category === activeCategory);
 
-  const academySchema = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "Meerras International School of Makeup and More (MIS)",
-    "description": "Leading International Makeup School in Mumbai offering CIDESCO certified diplomas and professional training in hair, makeup, and nails.",
-    "url": "https://www.meerramevawala.com/academy",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Mumbai",
-      "addressRegion": "Maharashtra",
-      "addressCountry": "IN"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Makeup Courses",
-      "itemListElement": filteredCourses.map(course => ({
-        "@type": "Course",
-        "name": course.title,
-        "description": course.description,
-        "provider": {
-          "@type": "Organization",
-          "name": "MIS Academy"
-        }
-      }))
-    }
-  };
+  const cleanPhone = state.settings.whatsappNumber.replace(/\D/g, '');
 
   const careerPaths = [
     {
@@ -148,9 +123,8 @@ const Academy: React.FC = () => {
     <div className="pt-20 pb-24 bg-[#FDFCFB]">
       <SEO 
         title="CIDESCO Certified Makeup Academy Mumbai"
-        description="Join Meerras International School of Makeup (MIS) Mumbai. CIDESCO certified makeup diploma, hair styling courses, and nail technician programs in Mumbai."
+        description="Join Meerras International School of Makeup and More (MIS) Mumbai. CIDESCO certified makeup diploma, hair styling courses, and nail technician programs in Mumbai."
         keywords="makeup academy mumbai, makeup courses in mumbai, CIDESCO diploma india, beauty school ghatkopar, professional makeup training mumbai"
-        schema={academySchema}
       />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center mb-20 overflow-hidden">
@@ -228,12 +202,14 @@ const Academy: React.FC = () => {
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Certification Details</p>
                     <span className="text-xs font-bold text-gray-900 leading-relaxed block max-w-[200px]">{course.certification}</span>
                   </div>
-                  <Link
-                    to="/contact"
+                  <a
+                    href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi, I'm interested in enrolling in the "${course.title}" course. Could you share the registration form and next batch dates?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full sm:w-auto bg-gray-900 text-white px-10 py-4 rounded-xl font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all text-center"
                   >
                     ENROLL NOW IN MUMBAI
-                  </Link>
+                  </a>
                 </div>
               </div>
             </article>
@@ -360,34 +336,6 @@ const Academy: React.FC = () => {
                 </Link>
               </div>
             </div>
-            {/* Background Decorative Elements */}
-            <div className="absolute top-0 left-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Global Accreditations Bar */}
-      <section className="py-20 bg-gray-900 text-white border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap justify-around items-center gap-12 opacity-80 grayscale hover:grayscale-0 transition-all">
-            <div className="text-center">
-              <p className="text-[10px] font-bold tracking-[0.2em] mb-2">ZURICH SWITZERLAND</p>
-              <h4 className="text-2xl font-serif font-bold text-[#D4AF37] whitespace-nowrap">CIDESCO CERTIFIED</h4>
-              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Media Makeup Artist & Cosmetologist</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[10px] font-bold tracking-[0.2em] mb-2">GOVERNMENT OF INDIA</p>
-              <h4 className="text-2xl font-serif font-bold text-[#D4AF37]">ISO 9001:2015</h4>
-            </div>
-            <div className="text-center">
-              <p className="text-[10px] font-bold tracking-[0.2em] mb-2">UNITED KINGDOM</p>
-              <h4 className="text-2xl font-serif font-bold text-[#D4AF37]">VTCT LEVEL 3</h4>
-            </div>
-            <div className="text-center">
-              <p className="text-[10px] font-bold tracking-[0.2em] mb-2">MAHARASHTRA STATE</p>
-              <h4 className="text-2xl font-serif font-bold text-[#D4AF37]">MSBVE APPROVED</h4>
-            </div>
           </div>
         </div>
       </section>
@@ -401,10 +349,20 @@ const Academy: React.FC = () => {
             Enrollment is now open for the 2024 batch in Mumbai. Secure your seat at India's premier international school for makeup, hair, and nails in Ghatkopar East.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/contact" className="bg-gray-900 text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all shadow-xl shadow-gray-200">
+            <a 
+              href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi Meerra, I'd like to receive the MIS Academy brochure and course details.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-900 text-white px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] transition-all shadow-xl shadow-gray-200"
+            >
               DOWNLOAD ACADEMY BROCHURE
-            </Link>
-            <a href={`https://wa.me/${state.settings.whatsappNumber.replace(/\D/g, '')}`} className="bg-white border border-gray-200 px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all">
+            </a>
+            <a 
+              href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hi, I have a quick question about the academy courses.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 px-12 py-5 rounded-full font-bold text-[10px] tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all"
+            >
               WHATSAPP ENQUIRY
             </a>
           </div>
