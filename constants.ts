@@ -262,9 +262,9 @@ export const INITIAL_STATE: AppState = {
       role: 'Bride',
       content: 'She had done such a great job! I was so happy with my looks. Got tons of compliments.',
       rating: 5,
-      image: 'https://picsum.photos/seed/user1/100/100',
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697766e7c1fa0c37bdbea833.jpeg',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      videoThumbnail: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop'
+      videoThumbnail: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697766e7c1fa0c37bdbea833.jpeg'
     },
     {
       id: 't2',
@@ -273,20 +273,20 @@ export const INITIAL_STATE: AppState = {
       role: 'BRIDE',
       content: 'She did my bridal makeup and I really loved it! Got so many compliments for all my looks.',
       rating: 5,
-      image: 'https://picsum.photos/seed/user2/100/100',
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69776772d2f5b78a926eeea2.jpeg',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      videoThumbnail: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071&auto=format&fit=crop'
+      videoThumbnail: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69776772d2f5b78a926eeea2.jpeg'
     },
     {
       id: 't3',
       name: 'Lakshita Gaddam',
-      lookTitle: 'Editorial High-Fashion Artistry',
+      lookTitle: 'Baby Shower Look',
       role: 'BRIDE',
-      content: 'Joining the MIS academy was the best career move. Meerra is a generous and detailed mentor.',
+      content: 'I was absolutely thrilled with my Baby Shower look! Meerra is a magician with makeup and made my special day even more memorable.',
       rating: 5,
-      image: 'https://picsum.photos/seed/user3/100/100',
+      image: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69776804ec5f6c7ac498108d.jpeg',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      videoThumbnail: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop'
+      videoThumbnail: 'https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69776804ec5f6c7ac498108d.jpeg'
     }
   ],
   blogPosts: [
