@@ -8,6 +8,7 @@ import { EditableSection } from '../components/EditorGuide';
 
 const Home: React.FC = () => {
   const { state } = useStore();
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const specialServices = state.services.filter(
     s => s.id === 's5' || s.id === 's6'
