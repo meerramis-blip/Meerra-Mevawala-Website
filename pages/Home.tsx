@@ -44,7 +44,7 @@ const Home: React.FC = () => {
         <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/69772696a87bebce5cf5053b.jpeg?q=80&w=2071&auto=format&fit=crop"
+              src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697728c3c1fa0c5ebdb42d8b.png?q=80&w=2071&auto=format&fit=crop"
               alt="Luxury Makeup Artistry in Mumbai"
               className="w-full h-full object-cover"
             />
