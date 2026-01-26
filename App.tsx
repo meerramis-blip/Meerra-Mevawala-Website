@@ -38,7 +38,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <main className="flex-grow">{children}</main>
       <Footer />
       <CookieConsent />
-      <EditorGuide />
+      {/* <EditorGuide /> */}
       <ScrollToTopButton />
     </div>
   );
