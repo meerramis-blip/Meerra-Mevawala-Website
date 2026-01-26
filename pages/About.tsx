@@ -47,7 +47,7 @@ const About: React.FC = () => {
             <div className="w-full max-w-sm lg:w-1/2 relative mx-auto lg:mx-0">
               <div className="relative z-10 aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop" 
+                  src="https://storage.googleapis.com/msgsndr/MtdLe3GrtN7nyamCg5sb/media/697729bbc1fa0cf7bdb46dd4.jpeg?q=80&w=2087&auto=format&fit=crop" 
                   alt="Meerra Mevawala" 
                   className="w-full h-full object-cover"
                 />
