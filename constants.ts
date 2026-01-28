@@ -257,7 +257,7 @@ export const INITIAL_STATE: AppState = {
     },
     {
       id: 't3',
-      name: 'Lakshita Gaddam',
+      name: 'Devanshi Thakkar',
       lookTitle: 'Baby Shower Look',
       role: 'BRIDE',
       content: 'I was absolutely thrilled with my Baby Shower look! Meerra is a magician with makeup and made my special day even more memorable.',
