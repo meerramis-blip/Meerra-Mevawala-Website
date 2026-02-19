@@ -218,11 +218,11 @@ const Services: React.FC = () => {
             <ul className="space-y-4">
               {[
                 "30% advance is required for a confirmed booking.",
-                "All bridal trials are chargeable and by appointment only.",
+                "All bridal trials are chargeable and will be provided strictly by appointment only.",
                 "We use HIGH-END international products exclusively for all services.",
-                "Outstation Travel, Stay & Food expenses are to be borne by the client.",
-                "Bookings outside Mumbai will attract a minimum 30% extra charge.",
-                "Bride lenses and lashes are provided FREE; flowers are extra."
+                "For outstation bookings, travel, stay, and food expenses will be borne by the client.",
+                "Bookings outside Mumbai will incur an additional charge of at least 30%.",
+                "Bride lenses and lashes are provided complimentary; however, flowers will be charged extra."
               ].map((term, i) => (
                 <li key={i} className="flex gap-4 text-gray-600 text-sm">
                   <CheckCircle2 size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
